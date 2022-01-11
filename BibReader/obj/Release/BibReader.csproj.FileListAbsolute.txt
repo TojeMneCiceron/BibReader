@@ -1,0 +1,96 @@
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\bin\Release\BibReader.exe.config
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\bin\Release\BibReader.exe
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\bin\Release\BibReader.pdb
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\bin\Release\LemmaSharp.dll
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\bin\Release\LemmaSharpPrebuilt.dll
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\bin\Release\LemmaSharpPrebuiltCompact.dll
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\bin\Release\Lzma#.dll
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\bin\Release\Sparc.TagCloud.dll
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\bin\Release\WordCloud.dll
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\obj\Release\BibReader.csprojAssemblyReference.cache
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\obj\Release\BibReader.ClassificationForm.resources
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\obj\Release\BibReader.FiltersForm.resources
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\obj\Release\BibReader.MainForm.resources
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\obj\Release\BibReader.Properties.Resources.resources
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\obj\Release\BibReader.csproj.GenerateResource.cache
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\obj\Release\BibReader.csproj.CopyComplete
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\obj\Release\BibReader.exe
+C:\Users\Маша\Desktop\Курсовая 4 курс\BibReader\BibReader\obj\Release\BibReader.pdb
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\BibReader.exe.config
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\BibReader.exe
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\BibReader.pdb
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\LemmaSharp.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\LemmaSharpPrebuilt.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\LemmaSharpPrebuiltCompact.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\Lzma#.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\Sparc.TagCloud.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\WordCloud.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.csprojAssemblyReference.cache
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.ClassificationForm.resources
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.FiltersForm.resources
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.MainForm.resources
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.Properties.Resources.resources
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.csproj.GenerateResource.cache
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.csproj.CopyComplete
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.exe
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.pdb
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\bin\Release\BibReader.exe.config
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\bin\Release\BibReader.exe
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\bin\Release\BibReader.pdb
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\bin\Release\LemmaSharp.dll
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\bin\Release\LemmaSharpPrebuilt.dll
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\bin\Release\LemmaSharpPrebuiltCompact.dll
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\bin\Release\Lzma#.dll
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\bin\Release\Sparc.TagCloud.dll
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\bin\Release\WordCloud.dll
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.csprojAssemblyReference.cache
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.ClassificationForm.resources
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.FiltersForm.resources
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.MainForm.resources
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.Properties.Resources.resources
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.csproj.GenerateResource.cache
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.csproj.CopyComplete
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.exe
+C:\Users\Masha\Desktop\curs\BibReader\BibReader\obj\Release\BibReader.pdb
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\HtmlAgilityPack.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\HtmlAgilityPack.pdb
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\HtmlAgilityPack.xml
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\ejml-0.23.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.AWT.WinForms.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Beans.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Charsets.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Cldrdata.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Corba.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Core.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Jdbc.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Localedata.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Management.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Media.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Misc.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Naming.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Nashorn.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Remoting.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Security.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.SwingAWT.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Text.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Tools.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.Util.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.XML.API.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.XML.Bind.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.XML.Crypto.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.XML.Parse.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.XML.Transform.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.XML.WebServices.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.OpenJDK.XML.XPath.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.Runtime.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\IKVM.Runtime.JNI.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\javax.json.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\joda-time.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\jollyday.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\OpenNLP.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\protobuf.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\SharpEntropy.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\slf4j-api.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\slf4j-simple.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\stanford-corenlp-3.9.2.dll
+C:\Users\Маша\Desktop\curs\BibReader\BibReader\bin\Release\xom.dll

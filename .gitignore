@@ -1,0 +1,16 @@
+
+\.vs/BibReader/v15/
+
+BibReader/bin/Debug/
+
+BibReaderLibrary/obj/Debug/
+
+BibReaderLibrary/bin/Debug/
+
+BibReader/obj/Debug/
+
+BibReaderTest/obj/Debug/
+
+BibReaderTest/bin/Debug/
+
+\.vs/BibReader/DesignTimeBuild/\.dtbcache
