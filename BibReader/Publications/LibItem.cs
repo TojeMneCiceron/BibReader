@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace BibReader.Publications
@@ -29,7 +31,7 @@ namespace BibReader.Publications
         public string ArticleNumber { get; set; }
         public int Priority { get => Type == "conference" ? 0: 1; }
         public List<string> Geography { get; set; } = new List<string>();
-        //
+        public int Id { get; set; }
 
         public LibItem(LibItem item)
         {
@@ -217,6 +219,64 @@ namespace BibReader.Publications
                     Geography.Add(key);
                 }
             }
+        }
+
+        public string BibTexForSave()
+        {
+            //string res;
+
+            StringBuilder sb = new StringBuilder();
+            StringWriter writer = new StringWriter(sb);
+
+            writer.WriteLine("@" + Type + "{");
+            writer.WriteLine("author={" + Authors + "},");
+            writer.WriteLine("abstract={" + Abstract + "},");
+            writer.WriteLine("affiliation={" + Affiliation + "},");
+            writer.WriteLine("doi={" + Doi + "},");
+            writer.WriteLine("journal={" + Journal + "},");
+            writer.WriteLine("keywords={" + Keywords + "},");
+            writer.WriteLine("number={" + Number + "},");
+            writer.WriteLine("pages={" + Pages + "},");
+            writer.WriteLine("publisher={" + Publisher + "},");
+            writer.WriteLine("source={" + Source + "},");
+            var title = OriginalTitle != string.Empty
+                ? "title={" + Title + " [" + OriginalTitle + "]},"
+                : "title={" + Title + "},";
+            writer.WriteLine(title);
+            writer.WriteLine("url={" + Url + "},");
+            writer.WriteLine("volume={" + Volume + "},");
+            writer.WriteLine("articleNumber={" + ArticleNumber + "},");
+            writer.WriteLine("year={" + Year + "},");
+            writer.WriteLine("address={" + Address + "},");
+            writer.WriteLine("}");
+
+            return sb.ToString();
+        }
+        public string BibTexForRef()
+        {
+            StringBuilder sb = new StringBuilder();
+            StringWriter writer = new StringWriter(sb);
+
+            writer.WriteLine("@article{" + Id + ",");
+            if (Journal != "")
+                writer.WriteLine("journal={" + Journal + "},");
+            if (Number != "")
+                writer.WriteLine("number=" + Number + ",");
+            //writer.WriteLine("publisher={" + Publisher + "},");
+            if (Title != "")
+                writer.WriteLine("title={{" + Title + "}},");
+            if (Volume != "")
+                writer.WriteLine("volume=" + Volume + ",");
+            if (Authors != "")
+                writer.WriteLine("author={" + Authors + "},");
+            //writer.WriteLine("articleNumber={" + ArticleNumber + "},");
+            if (Pages != "")
+                writer.WriteLine("pages={" + Pages.Replace("<", "").Replace(">", "").Replace(" ", "") + "},");
+            if (Year != "")
+                writer.WriteLine("year=" + Year + ",");
+            writer.WriteLine("}");
+
+            return sb.ToString();
         }
     }
 }

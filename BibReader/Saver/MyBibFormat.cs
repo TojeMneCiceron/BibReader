@@ -24,26 +24,28 @@ namespace BibReader.Saver
                     {
                         foreach (var item in libItems)
                         {
-                            writer.WriteLine("@" + item.Type + "{");
-                            writer.WriteLine("author={" + item.Authors + "},");
-                            writer.WriteLine("abstract={" + item.Abstract + "},");
-                            writer.WriteLine("affiliation={" + item.Affiliation + "},");
-                            writer.WriteLine("doi={" + item.Doi + "},");
-                            writer.WriteLine("journal={" + item.Journal + "},");
-                            writer.WriteLine("keywords={" + item.Keywords + "},");
-                            writer.WriteLine("number={" + item.Number + "},");
-                            writer.WriteLine("pages={" + item.Pages + "},");
-                            writer.WriteLine("publisher={" + item.Publisher + "},");
-                            writer.WriteLine("source={" + item.Source + "},");
-                            var title = item.OriginalTitle != string.Empty
-                                ? "title={" + item.Title + " [" + item.OriginalTitle + "]},"
-                                : "title={" + item.Title + "},";
-                            writer.WriteLine(title);
-                            writer.WriteLine("url={" + item.Url + "},");
-                            writer.WriteLine("volume={" + item.Volume + "},");
-                            writer.WriteLine("year={" + item.Year + "},");
-                            writer.WriteLine("address={" + item.Address + "},");
-                            writer.WriteLine("}");
+                            writer.WriteLine(item.BibTexForSave());
+                            //writer.WriteLine("@" + item.Type + "{");
+                            //writer.WriteLine("author={" + item.Authors + "},");
+                            //writer.WriteLine("abstract={" + item.Abstract + "},");
+                            //writer.WriteLine("affiliation={" + item.Affiliation + "},");
+                            //writer.WriteLine("doi={" + item.Doi + "},");
+                            //writer.WriteLine("journal={" + item.Journal + "},");
+                            //writer.WriteLine("keywords={" + item.Keywords + "},");
+                            //writer.WriteLine("number={" + item.Number + "},");
+                            //writer.WriteLine("pages={" + item.Pages + "},");
+                            //writer.WriteLine("publisher={" + item.Publisher + "},");
+                            //writer.WriteLine("source={" + item.Source + "},");
+                            //var title = item.OriginalTitle != string.Empty
+                            //    ? "title={" + item.Title + " [" + item.OriginalTitle + "]},"
+                            //    : "title={" + item.Title + "},";
+                            //writer.WriteLine(title);
+                            //writer.WriteLine("url={" + item.Url + "},");
+                            //writer.WriteLine("volume={" + item.Volume + "},");
+                            //writer.WriteLine("articleNumber={" + item.ArticleNumber + "},");
+                            //writer.WriteLine("year={" + item.Year + "},");
+                            //writer.WriteLine("address={" + item.Address + "},");
+                            //writer.WriteLine("}");
                             writer.WriteLine();
                         }
                     }

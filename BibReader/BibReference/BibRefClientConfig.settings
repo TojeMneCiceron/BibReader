@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BibReader.BibReference" GeneratedClassName="BibRefClientConfig">
+  <Profiles />
+  <Settings>
+    <Setting Name="stylesLink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:8000/styles</Value>
+    </Setting>
+    <Setting Name="citationsLink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:8000/citations?style=[styleName]</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

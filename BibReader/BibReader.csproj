@@ -131,6 +131,9 @@
     <Reference Include="jollyday, Version=0.4.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Stanford.NLP.CoreNLP.3.9.2.0\lib\jollyday.dll</HintPath>
     </Reference>
+    <Reference Include="Json.Net, Version=1.0.33.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Json.Net.1.0.33\lib\netstandard2.0\Json.Net.dll</HintPath>
+    </Reference>
     <Reference Include="LemmaSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sparc.TagCloud.0.0.1\lib\net40\LemmaSharp.dll</HintPath>
     </Reference>
@@ -205,6 +208,12 @@
     <Compile Include="Analysis\Stopwords.cs" />
     <Compile Include="Analysis\TextAnalysis.cs" />
     <Compile Include="BibReference\AuthorsParser.cs" />
+    <Compile Include="BibReference\BibRefClient.cs" />
+    <Compile Include="BibReference\BibRefClientConfig.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>BibRefClientConfig.settings</DependentUpon>
+    </Compile>
     <Compile Include="Finder\Collection\Collection.cs" />
     <Compile Include="Finder\Functions.cs" />
     <Compile Include="Log\Log.cs" />
@@ -278,6 +287,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="BibReference\BibRefClientConfig.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>BibRefClientConfig.Designer.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

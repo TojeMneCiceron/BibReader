@@ -17,6 +17,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using System.Drawing;
 using BibReader.Readers.ELibraryScraper;
 using BibReader.Analysis;
+using BibReader.BibReference;
 
 namespace BibReader
 {
@@ -123,7 +124,8 @@ namespace BibReader
             btFirst.Enabled = false;
             btUnique.Enabled = false;
             btRelevance.Enabled = false;
-            cbBibStyles.SelectedIndex = 0;
+            //cbBibStyles.SelectedIndex = 0;
+            btPrintBib.Enabled = false;
             cbSearchCriterion.SelectedIndex = 0;
             enabledEditProperties(false);
         }
@@ -448,7 +450,7 @@ namespace BibReader
             rtbBib.Text = string.Empty;
             try
             {
-                MakeBibRef();
+                //MakeBibRef();
             }
             catch (Exception ex)
             {
@@ -536,12 +538,6 @@ namespace BibReader
 
         private void btPrevFindedLibItem_Click(object sender, EventArgs e) =>
             Collection.SelectItem(lvLibItems, GetNextIndex(Finder.Functions.Prev));
-
-        private void btPrintBib_Click(object sender, EventArgs e)
-        {
-            rtbBib.Text = string.Empty;
-            MakeBibRef();
-        }
 
         private void названияToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1213,6 +1209,59 @@ namespace BibReader
             if (!(btUnique.Enabled || !btUnique.Enabled && !btFirst.Enabled && !btRelevance.Enabled))
                 return;
             добавитьToolStripMenuItem.Enabled = false;
+        }
+
+        private void btPrintBib_Click(object sender, EventArgs e)
+        {
+            //rtbBib.Text = string.Empty;
+            //MakeBibRef();
+
+            List<LibItem> items = new List<LibItem>();
+
+            foreach (ListViewItem item in lvLibItems.Items)
+            {
+                items.Add((LibItem)item.Tag);
+            }
+
+            if (items.Count == 0)
+            {
+                MessageBox.Show("Загрузите хотя бы одну публикацию", "Ошибка");
+                return;
+            }
+
+            var citations = BibRefClient.GetCitations(items, cbBibStyles.Text);
+            if (citations is null)
+            {
+                MessageBox.Show("Не удалось получить биб. ссылки.\n\n-Обновите список стилей\n-Проверьте подключение к сети или повторите попытку позже", "Биб. ссылки");
+            }
+            else
+            {
+                MessageBox.Show("Биб. ссылки получены!", "Биб. ссылки");
+                lbCurrentStyle.Text = "Текущий стиль: " + cbBibStyles.Text;
+                lbCurrentStyle.Visible = true;
+                rtbBib.Clear();
+                foreach (var s in citations)
+                {
+                    rtbBib.AppendText(s + "\n\n");
+                }
+            }
+        }
+
+        private void btGetStyles_Click(object sender, EventArgs e)
+        {
+            var styles = BibRefClient.GetStyles();
+            if (styles is null)
+            {
+                btPrintBib.Enabled = false;
+                MessageBox.Show("Не удалось получить список стилей.\nПроверьте подключение к сети или повторите попытку позже", "Стили");
+            }
+            else
+            {
+                MessageBox.Show("Стили получены!", "Стили");
+                btPrintBib.Enabled = true;
+                cbBibStyles.DataSource = styles;
+                cbBibStyles.SelectedIndex = 0;
+            }
         }
     }
 }
