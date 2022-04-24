@@ -203,6 +203,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddSourceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddSourceForm.Designer.cs">
+      <DependentUpon>AddSourceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddSymbol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddSymbol.Designer.cs">
+      <DependentUpon>AddSymbol.cs</DependentUpon>
+    </Compile>
     <Compile Include="Analysis\Circle.cs" />
     <Compile Include="Analysis\DataTag.cs" />
     <Compile Include="Analysis\Stopwords.cs" />
@@ -226,6 +238,7 @@
     </Compile>
     <Compile Include="Finder\Finder.cs" />
     <Compile Include="Publications\Tags.cs" />
+    <Compile Include="Readers\BibReaders\Source.cs" />
     <Compile Include="Readers\BibReaders\SourceIdentifier.cs" />
     <Compile Include="Readers\BibReaders\UniversalBibReader.cs" />
     <Compile Include="ClassificationForm.cs">
@@ -251,6 +264,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Saver\DocSaver.cs" />
+    <Compile Include="SourcesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SourcesForm.Designer.cs">
+      <DependentUpon>SourcesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Statistic\FormStatistic.cs" />
     <Compile Include="Statistic\Statistic.cs" />
     <Compile Include="Publications\Corpuses\Unique.cs" />
@@ -265,6 +284,12 @@
     <Compile Include="ContextAnalysis.Designer.cs">
       <DependentUpon>ContextAnalysis.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddSourceForm.resx">
+      <DependentUpon>AddSourceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddSymbol.resx">
+      <DependentUpon>AddSymbol.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ClassificationForm.resx">
       <DependentUpon>ClassificationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -287,6 +312,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SourcesForm.resx">
+      <DependentUpon>SourcesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="BibReference\BibRefClientConfig.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>BibRefClientConfig.Designer.cs</LastGenOutput>

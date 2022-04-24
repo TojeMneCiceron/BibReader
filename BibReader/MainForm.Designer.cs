@@ -112,6 +112,7 @@
             this.lbTitle = new System.Windows.Forms.Label();
             this.lbAuthors = new System.Windows.Forms.Label();
             this.tpBib = new System.Windows.Forms.TabPage();
+            this.chbServer = new System.Windows.Forms.CheckBox();
             this.lbCurrentStyle = new System.Windows.Forms.Label();
             this.btGetStyles = new System.Windows.Forms.Button();
             this.btSaveBibRef = new System.Windows.Forms.Button();
@@ -172,6 +173,9 @@
             this.аннотацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ключевыеСловаToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьДокументToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.источникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.списокИсточниковToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.обновитьИсточникиПубликацийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lbCurrSelectedItem = new System.Windows.Forms.Label();
             this.btFirst = new System.Windows.Forms.Button();
             this.btUnique = new System.Windows.Forms.Button();
@@ -990,6 +994,7 @@
             // 
             // tpBib
             // 
+            this.tpBib.Controls.Add(this.chbServer);
             this.tpBib.Controls.Add(this.lbCurrentStyle);
             this.tpBib.Controls.Add(this.btGetStyles);
             this.tpBib.Controls.Add(this.btSaveBibRef);
@@ -1005,11 +1010,22 @@
             this.tpBib.Text = "Библ. описания";
             this.tpBib.UseVisualStyleBackColor = true;
             // 
-            // lbLoading
+            // chbServer
+            // 
+            this.chbServer.AutoSize = true;
+            this.chbServer.Location = new System.Drawing.Point(5, 54);
+            this.chbServer.Name = "chbServer";
+            this.chbServer.Size = new System.Drawing.Size(175, 17);
+            this.chbServer.TabIndex = 6;
+            this.chbServer.Text = "Запросить данные с сервера";
+            this.chbServer.UseVisualStyleBackColor = true;
+            this.chbServer.CheckedChanged += new System.EventHandler(this.chbServer_CheckedChanged);
+            // 
+            // lbCurrentStyle
             // 
             this.lbCurrentStyle.AutoSize = true;
-            this.lbCurrentStyle.Location = new System.Drawing.Point(239, 8);
-            this.lbCurrentStyle.Name = "lbLoading";
+            this.lbCurrentStyle.Location = new System.Drawing.Point(282, 8);
+            this.lbCurrentStyle.Name = "lbCurrentStyle";
             this.lbCurrentStyle.Size = new System.Drawing.Size(90, 13);
             this.lbCurrentStyle.TabIndex = 5;
             this.lbCurrentStyle.Text = "Текущий стиль: ";
@@ -1046,9 +1062,9 @@
             this.btPrintBib.Location = new System.Drawing.Point(122, 4);
             this.btPrintBib.Margin = new System.Windows.Forms.Padding(2);
             this.btPrintBib.Name = "btPrintBib";
-            this.btPrintBib.Size = new System.Drawing.Size(112, 21);
+            this.btPrintBib.Size = new System.Drawing.Size(155, 21);
             this.btPrintBib.TabIndex = 2;
-            this.btPrintBib.Text = "Получить ссылки";
+            this.btPrintBib.Text = "Получить библ. описания";
             this.btPrintBib.UseVisualStyleBackColor = false;
             this.btPrintBib.Click += new System.EventHandler(this.btPrintBib_Click);
             // 
@@ -1070,10 +1086,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbBib.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtbBib.Location = new System.Drawing.Point(5, 54);
+            this.rtbBib.Location = new System.Drawing.Point(5, 76);
             this.rtbBib.Margin = new System.Windows.Forms.Padding(2);
             this.rtbBib.Name = "rtbBib";
-            this.rtbBib.Size = new System.Drawing.Size(481, 439);
+            this.rtbBib.Size = new System.Drawing.Size(481, 417);
             this.rtbBib.TabIndex = 0;
             this.rtbBib.Text = "";
             // 
@@ -1581,7 +1597,8 @@
             this.файлToolStripMenuItem,
             this.классификацияToolStripMenuItem,
             this.фильтрыToolStripMenuItem,
-            this.контекстныйАнализToolStripMenuItem});
+            this.контекстныйАнализToolStripMenuItem,
+            this.источникиToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -1760,6 +1777,29 @@
             this.открытьДокументToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.открытьДокументToolStripMenuItem.Text = "Открыть файл";
             this.открытьДокументToolStripMenuItem.Click += new System.EventHandler(this.открытьДокументToolStripMenuItem_Click);
+            // 
+            // источникиToolStripMenuItem
+            // 
+            this.источникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.списокИсточниковToolStripMenuItem,
+            this.обновитьИсточникиПубликацийToolStripMenuItem});
+            this.источникиToolStripMenuItem.Name = "источникиToolStripMenuItem";
+            this.источникиToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+            this.источникиToolStripMenuItem.Text = "Источники";
+            // 
+            // списокИсточниковToolStripMenuItem
+            // 
+            this.списокИсточниковToolStripMenuItem.Name = "списокИсточниковToolStripMenuItem";
+            this.списокИсточниковToolStripMenuItem.Size = new System.Drawing.Size(286, 22);
+            this.списокИсточниковToolStripMenuItem.Text = "Список пользовательских источников";
+            this.списокИсточниковToolStripMenuItem.Click += new System.EventHandler(this.списокИсточниковToolStripMenuItem_Click);
+            // 
+            // обновитьИсточникиПубликацийToolStripMenuItem
+            // 
+            this.обновитьИсточникиПубликацийToolStripMenuItem.Name = "обновитьИсточникиПубликацийToolStripMenuItem";
+            this.обновитьИсточникиПубликацийToolStripMenuItem.Size = new System.Drawing.Size(286, 22);
+            this.обновитьИсточникиПубликацийToolStripMenuItem.Text = "Обновить источники публикаций";
+            this.обновитьИсточникиПубликацийToolStripMenuItem.Click += new System.EventHandler(this.обновитьИсточникиПубликацийToolStripMenuItem_Click);
             // 
             // lbCurrSelectedItem
             // 
@@ -2141,6 +2181,10 @@
         private System.Windows.Forms.ListView lvAuthorsCountStatistic;
         private System.Windows.Forms.Button btGetStyles;
         private System.Windows.Forms.Label lbCurrentStyle;
+        private System.Windows.Forms.ToolStripMenuItem источникиToolStripMenuItem;
+        private System.Windows.Forms.CheckBox chbServer;
+        private System.Windows.Forms.ToolStripMenuItem списокИсточниковToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem обновитьИсточникиПубликацийToolStripMenuItem;
     }
 }
 

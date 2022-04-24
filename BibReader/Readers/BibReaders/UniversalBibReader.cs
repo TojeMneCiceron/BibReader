@@ -1,4 +1,5 @@
 ﻿using BibReader.Publications;
+using BibReader.Readers.BibReaders;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -155,10 +156,20 @@ namespace BibReader.Readers
 
         private string RemoveExtraSymbols(string str)
         {
-            Regex r = new Regex(@"\\a-zA-Z");
-            Regex regex = new Regex(@"\s+");
-            //remove extra spaces and \ {}
-            return regex.Replace(str, " ").Replace("{\"}", "\"").Replace(@"\", "").Replace("<i>", "").Replace("</i>", "");
+            Regex r = new Regex(@"{\w}");
+            Regex rs = new Regex(@"\s+");
+            //remove extra spaces and \
+            string res = rs.Replace(str, " ").Replace("{\"}", "\"").Replace(@"\", "").Replace("<i>", "").Replace("</i>", "");
+
+            var matches = r.Matches(res);
+
+            foreach (Match match in matches)
+            {
+                var sym = Regex.Match(match.Value, @"\w");
+                res = res.Replace(match.Value, sym.Value);
+            }
+
+            return res;
         }
 
         private string FixWOSGeography(string aff, string authors)
@@ -168,7 +179,40 @@ namespace BibReader.Readers
             return s.Where(x => !x.Contains("(Corresponding Author)")).Aggregate((x, y) => $"{x}. {y}");
         }
 
-        private List<LibItem> GetLibItems(StreamReader reader)
+        private LibItem IdentifySource(LibItem item, List<Source> defaultSources, List<Source> customSources)
+        {
+            foreach (Source source in defaultSources)
+            {
+                if (source.SourceAffiliation(item))
+                {
+                    item.Source = source.Name;
+                    return item;
+                }
+            }
+            foreach (Source source in customSources)
+            {
+                if (source.SourceAffiliation(item))
+                {
+                    item.Source = source.Name;
+                    return item;
+                }
+            }
+            item.Source = "Неизв. источник";
+            item.UnknownSource = true;
+            return item;
+        }
+
+        //private string GetBibTexID(string bibTexString)
+        //{
+        //    string firstLine = bibTexString.Split('\n').First();
+
+        //    string res = firstLine.Substring(firstLine.IndexOf('{') + 1);
+        //    res = res.Substring(0, res.LastIndexOf(','));
+
+        //    return res;
+        //}
+
+        private List<LibItem> GetLibItems(StreamReader reader, List<Source> defaultSources, List<Source> customSources)
         {
             string extra = "";
 
@@ -199,6 +243,9 @@ namespace BibReader.Readers
             string numpages = "";
 
             //int finalTitleTagPosition = -1;
+            bool isFirstTag = true;
+            string firstTag = "";
+            string fullBibTexString = newLine + "\r\n";
 
             while (!reader.EndOfStream)
             {
@@ -216,6 +263,11 @@ namespace BibReader.Readers
                             sourceIdentifier = new SourceIdentifier();
                             sourceIdentifier.InitString = newLine;
                             //titleTagPosition = 0;
+
+                            isFirstTag = true;
+                            firstTag = "";
+                            fullBibTexString = "";
+
                             isPagesTagFound = false;
                             isNumpagesTagFound = false;
                             numpages = "";
@@ -230,10 +282,22 @@ namespace BibReader.Readers
 
                             tagString = RemoveExtraSymbols(tagString);
 
+                            if (newLine.Contains("@"))
+                                fullBibTexString += newLine + "\r\n";
+                            else
+                                fullBibTexString += tagString + "\r\n";
+
                             sourceIdentifier.DoubleBracketsOpening = tagString.Contains("{{");
                             sourceIdentifier.DoubleBracketsClosing = tagString.Contains("}}");
 
                             var key = regex.Match(tagString).Groups[1].Value;
+
+                            if (isFirstTag && key != "")
+                            {
+                                firstTag = key;
+                                isFirstTag = false;
+                            }
+
                             var value = ClearValue(regex.Match(tagString).Groups[3].Value, key);
 
                             if (key == "numpages")
@@ -244,7 +308,7 @@ namespace BibReader.Readers
 
                             if (Tags.TagRework.ContainsKey(key) && Tags.TagRework[key] == "title" && value[value.Length - 1] == '.')
                                 value = value.Substring(0, value.Length - 1);
-                            
+
                             if (Tags.TagRework.ContainsKey(key) && Tags.TagRework[key] == "source")
                                 sourceIdentifier.SourceTag = value;
 
@@ -311,11 +375,20 @@ namespace BibReader.Readers
                     else
                         Tags.TagValues["pages"] = defaultPagesNumber;
 
-                Tags.TagValues["source"] = sourceIdentifier.IdentifySource();
-                if (Tags.TagValues["source"] == "Web of Science")
-                    Tags.TagValues["affiliation"] = FixWOSGeography(Tags.TagValues["affiliation"], Tags.TagValues["authors"]);
+                //Tags.TagValues["source"] = sourceIdentifier.IdentifySource();
+                //if (Tags.TagValues["source"] == "Web of Science")
+                Tags.TagValues["affiliation"] = FixWOSGeography(Tags.TagValues["affiliation"], Tags.TagValues["authors"]);
 
                 var newItem = new LibItem(Tags.TagValues);
+
+                newItem.BibTexFirstTag = firstTag;
+                //setting string + id
+                newItem.SetBibTexString(fullBibTexString + "}");
+                //newItem.BibTexId = GetBibTexID(newItem.BibTexString);
+
+                if (Tags.TagValues["source"] == "")
+                    newItem = IdentifySource(newItem, defaultSources, customSources);
+
                 Items.Add(newItem);
                 Tags.NewTags();
             }
@@ -356,12 +429,12 @@ namespace BibReader.Readers
             return value;
         }
 
-        public List<LibItem> Read(StreamReader[] readers)
+        public List<LibItem> Read(StreamReader[] readers, List<Source> defaultSources, List<Source> customSources)
         {
             var Items = new List<LibItem>();
             if (readers != null)
                 foreach (var reader in readers)
-                    Items.AddRange(GetLibItems(reader));
+                    Items.AddRange(GetLibItems(reader, defaultSources, customSources));
             return Items;
         }
     }

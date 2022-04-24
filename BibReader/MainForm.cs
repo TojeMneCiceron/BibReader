@@ -18,6 +18,8 @@ using System.Drawing;
 using BibReader.Readers.ELibraryScraper;
 using BibReader.Analysis;
 using BibReader.BibReference;
+using BibReader.Readers.BibReaders;
+using System.Xml.Serialization;
 
 namespace BibReader
 {
@@ -29,6 +31,10 @@ namespace BibReader
         Finder.Finder finder = new Finder.Finder();
         Log.Log log = new Log.Log();
         int LastOpenedFilterTab = 0;
+
+        List<Source> defaultSources = new List<Source>();
+        List<Source> customSources = new List<Source>();
+        XmlSerializer xs = new XmlSerializer(typeof(List<Source>));
 
         private StreamReader[] GetStreamReaders()
         {
@@ -56,7 +62,7 @@ namespace BibReader
                             var reader = new StreamReader(@opd.FileNames[i]);
                             streamReaders[i] = reader;
                         }
-                        else if (opd.FileNames[i].Substring(opd.FileNames[i].LastIndexOf(".") + 1) == "html" || 
+                        else if (opd.FileNames[i].Substring(opd.FileNames[i].LastIndexOf(".") + 1) == "html" ||
                                  opd.FileNames[i].Substring(opd.FileNames[i].LastIndexOf(".") + 1) == "htm")
                         {
                             var scraper = new Scraper();
@@ -78,6 +84,19 @@ namespace BibReader
             }
         }
 
+        private void InitSources()
+        {
+            using (FileStream fs = new FileStream("defaultSources.xml", FileMode.Open))
+            {
+                defaultSources = (List<Source>)xs.Deserialize(fs);
+            }
+
+            using (FileStream fs = new FileStream("sources.xml", FileMode.Open))
+            {
+                customSources = (List<Source>)xs.Deserialize(fs);
+            }
+        }
+
         private void InitListViewItems()
         {
             lvLibItems.Columns.Add("Название");
@@ -93,10 +112,10 @@ namespace BibReader
             var listOfTables = new List<ListView>();
             foreach (TabPage tp in tps)
                 listOfTables.Add(tp.Controls.OfType<ListView>().First());
-                listOfTables.AddRange(lists);
-                listOfTables.ForEach(listView => listView.ColumnClick += new ColumnClickEventHandler(
-                    (sender, e) => Sorting.SortingByColumn((ListView)sender, e.Column))
-                    );
+            listOfTables.AddRange(lists);
+            listOfTables.ForEach(listView => listView.ColumnClick += new ColumnClickEventHandler(
+                (sender, e) => Sorting.SortingByColumn((ListView)sender, e.Column))
+                );
         }
 
         private void InitTextBoxTextChangedEvent()
@@ -128,8 +147,18 @@ namespace BibReader
             btPrintBib.Enabled = false;
             cbSearchCriterion.SelectedIndex = 0;
             enabledEditProperties(false);
-        }
 
+            btGetStyles.Enabled = chbServer.Checked;
+            btPrintBib.Enabled = !chbServer.Checked;
+            cbBibStyles.Items.Clear();
+            cbBibStyles.Items.Add("APA");
+            cbBibStyles.Items.Add("Harvard");
+            cbBibStyles.Items.Add("IEEE");
+            cbBibStyles.Items.Add("ГОСТ");
+            cbBibStyles.SelectedIndex = 0;
+
+            InitSources();
+        }
         private void AddLibItemsInLvItems()
         {
             lvLibItems.Items.Clear();
@@ -162,7 +191,7 @@ namespace BibReader
             var time = DateTime.Now;
             log.Write($"{ time.ToString() }");
             log.Write($"> Find unique where libItems count = {lvLibItems.Items.Count} ");
-          
+
             var unique = new Unique(libItems);
 
             //MessageBox.Show(libItems[0].Title +
@@ -255,7 +284,8 @@ namespace BibReader
                 tbYear.Text = item.Year;
                 lbCurrSelectedItem.Text = $"{lvLibItems.SelectedIndices[0] + 1}/{lvLibItems.Items.Count}";
                 enabledEditProperties(true);
-            } else
+            }
+            else
             {
                 enabledEditProperties(false);
             }
@@ -269,7 +299,12 @@ namespace BibReader
             {
                 libItems.Clear();
                 deletedLibItems.Clear();
-                libItems.AddRange(univReader.Read(readers));
+                //bool unknownSources = false;
+                libItems.AddRange(univReader.Read(readers, defaultSources, customSources));
+
+                //check if got unknown sources
+                CheckUnknownSources();
+
                 LoadFilters();
                 var time = DateTime.Now;
                 log.Write($"{ time.ToString() }");
@@ -312,8 +347,12 @@ namespace BibReader
                 List<LibItem> newitems;
                 var time = DateTime.Now;
                 log.Write($"{ time.ToString() }");
-                log.Write($"> Add new LibItem(s): count = { (newitems = univReader.Read(reader)).Count }");
+                log.Write($"> Add new LibItem(s): count = { (newitems = univReader.Read(reader, defaultSources, customSources)).Count }");
                 libItems.AddRange(newitems);
+
+                //check if got unknown sources
+                CheckUnknownSources();
+
                 LoadFilters();
                 AddLibItemsInLvItems();
                 log.Write($"{ (DateTime.Now - time).TotalSeconds.ToString() } sec.");
@@ -552,7 +591,7 @@ namespace BibReader
 
         private void ключевыеСловаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string keywords = string.Join("\r\n", 
+            string keywords = string.Join("\r\n",
                 libItems
                 .Where(item => item.Keywords != string.Empty)
                 .Select(item => item.Keywords)
@@ -563,7 +602,7 @@ namespace BibReader
 
         private void аннотацииToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string abstract_ = string.Join("\r\n", 
+            string abstract_ = string.Join("\r\n",
                 libItems
                 .Where(item => item.Abstract != string.Empty)
                 .Select(item => item.Abstract)
@@ -658,7 +697,7 @@ namespace BibReader
                 case 3: return chJournal;
                 case 4: return chGeography;
                 case 5: return chConference;
-                    //+AuthorsCount when charts are fixed
+                //+AuthorsCount when charts are fixed
                 default: return null;
             }
         }
@@ -678,7 +717,7 @@ namespace BibReader
             }
         }
 
-        private int[] orderByKeyValue(Dictionary <string, int> statistic)
+        private int[] orderByKeyValue(Dictionary<string, int> statistic)
         {
             return statistic.OrderBy(i => i.Key).Select(item => item.Value).ToArray();
         }
@@ -822,7 +861,7 @@ namespace BibReader
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 chart.SaveImage(saveFileDialog.FileName, ChartImageFormat.Png);
-            }          
+            }
         }
 
         private void btSaveDiagram_Click(object sender, EventArgs e)
@@ -890,7 +929,7 @@ namespace BibReader
                 .Select(item => item.Title)
                 );
             TextAnalysis.SetConceptsAnalysis(titles);
-            var form = new ContextAnalysis() { Info = titles};
+            var form = new ContextAnalysis() { Info = titles };
             form.Show();
         }
 
@@ -911,7 +950,7 @@ namespace BibReader
             string text = "";
             while (!reader.EndOfStream)
             {
-               text += reader.ReadLine();
+                text += reader.ReadLine();
             }
             return text;
         }
@@ -922,7 +961,7 @@ namespace BibReader
             var readers = GetStreamReaders();
 
             if (readers != null)
-            { 
+            {
                 if (readers != null)
                 {
                     foreach (var reader in readers)
@@ -1196,7 +1235,7 @@ namespace BibReader
             добавитьToolStripMenuItem.Enabled = true;
         }
 
-        
+
         private void файлToolStripMenuItem_DropDownOpened(object sender, EventArgs e)
         {
             if (!(btUnique.Enabled || !btUnique.Enabled && !btFirst.Enabled && !btRelevance.Enabled))
@@ -1213,20 +1252,26 @@ namespace BibReader
 
         private void btPrintBib_Click(object sender, EventArgs e)
         {
-            //rtbBib.Text = string.Empty;
-            //MakeBibRef();
+            if (lvLibItems.Items.Count == 0)
+            {
+                MessageBox.Show("Загрузите хотя бы одну публикацию", "Ошибка");
+                return;
+            }
+
+            if (!chbServer.Checked)
+            {
+                rtbBib.Text = string.Empty;
+                MakeBibRef();
+                lbCurrentStyle.Visible = true;
+                lbCurrentStyle.Text = "Текущий стиль: " + cbBibStyles.Text;
+                return;
+            }
 
             List<LibItem> items = new List<LibItem>();
 
             foreach (ListViewItem item in lvLibItems.Items)
             {
                 items.Add((LibItem)item.Tag);
-            }
-
-            if (items.Count == 0)
-            {
-                MessageBox.Show("Загрузите хотя бы одну публикацию", "Ошибка");
-                return;
             }
 
             var citations = BibRefClient.GetCitations(items, cbBibStyles.Text);
@@ -1262,6 +1307,112 @@ namespace BibReader
                 cbBibStyles.DataSource = styles;
                 cbBibStyles.SelectedIndex = 0;
             }
+        }
+
+        private void chbServer_CheckedChanged(object sender, EventArgs e)
+        {
+            btGetStyles.Enabled = chbServer.Checked;
+            btPrintBib.Enabled = !chbServer.Checked;
+
+            if (!chbServer.Checked)
+            {
+                cbBibStyles.Items.Clear();
+                cbBibStyles.Items.Add("APA");
+                cbBibStyles.Items.Add("Harvard");
+                cbBibStyles.Items.Add("IEEE");
+                cbBibStyles.Items.Add("ГОСТ");
+                cbBibStyles.SelectedIndex = 0;
+            }
+            else
+            {
+                cbBibStyles.Items.Clear();
+            }
+        }
+
+        private void списокИсточниковToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var sourcesForm = new SourcesForm(customSources);
+
+            if (sourcesForm.ShowDialog() != DialogResult.OK)
+                return;
+
+            customSources = sourcesForm.Sources;
+
+            //обновляем?
+            UpdateSources();
+        }
+
+        private void UpdateSources()
+        {
+            bool skipAddition = false;
+            foreach (LibItem item in libItems)
+            {
+                bool unknownSource = true;
+                foreach (Source source in defaultSources)
+                {
+                    if (source.SourceAffiliation(item))
+                    {
+                        item.Source = source.Name;
+                        unknownSource = false;
+                        break;
+                    }
+                }
+                foreach (Source source in customSources)
+                {
+                    if (source.SourceAffiliation(item))
+                    {
+                        item.Source = source.Name;
+                        unknownSource = false;
+                        break;
+                    }
+                }
+                if (unknownSource)
+                {
+                    item.Source = "Неизв. источник";
+                    if (!skipAddition)
+                        if (MessageBox.Show("Обнаружен неизвестный источник. Добавить новый?", "Неизвестный источник", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            var addSource = new AddSourceForm(null, item.BibTexString);
+
+                            if (addSource.ShowDialog() == DialogResult.OK)
+                            {
+                                var newSource = addSource.Source;
+                                customSources.Add(newSource);
+                                if (newSource.SourceAffiliation(item))
+                                    item.Source = newSource.Name;
+
+                                SaveSources();
+                            }
+                        }
+                        else
+                            skipAddition = true;
+                }
+
+            }
+
+            UpdateStatistic();
+        }
+
+        private void обновитьИсточникиПубликацийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //обновляем
+
+            UpdateSources();
+        }
+
+        private void CheckUnknownSources()
+        {
+            var itemsWithUnknownSources = libItems.Where(item => item.UnknownSource).ToList();
+
+            if (itemsWithUnknownSources.Count > 0)
+                UpdateSources();
+        }
+
+        private void SaveSources()
+        {
+            TextWriter textWriter = new StreamWriter("sources.xml");
+            xs.Serialize(textWriter, customSources);
+            textWriter.Close();
         }
     }
 }

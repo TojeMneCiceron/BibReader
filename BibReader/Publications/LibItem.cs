@@ -32,6 +32,19 @@ namespace BibReader.Publications
         public int Priority { get => Type == "conference" ? 0: 1; }
         public List<string> Geography { get; set; } = new List<string>();
         public int Id { get; set; }
+        public string BibTexString { get; set; }
+        public string BibTexId { get; set; }
+        public string BibTexFirstTag { get; set; }
+        public bool UnknownSource { get; set; } = false;
+
+        public void SetBibTexString(string bibTexString)
+        {
+            BibTexString = bibTexString;
+
+            string firstLine = bibTexString.Split('\n').First();
+            string res = firstLine.Substring(firstLine.IndexOf('{') + 1);
+            BibTexId = res.Substring(0, res.LastIndexOf(','));
+        }
 
         public LibItem(LibItem item)
         {
