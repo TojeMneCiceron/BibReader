@@ -216,9 +216,11 @@ namespace BibReader.BibReference
                     .Select(
                         (author, i) =>
                         author =
-                            i < 3
+                            i < 1
+                            //i < 3
                             ?
-                                i == 2
+                                i == 0
+                                //i == 2
                                 ? author + " et. al."
                                 : author + ", "
                             : string.Empty

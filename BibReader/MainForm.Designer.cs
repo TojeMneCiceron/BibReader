@@ -167,6 +167,8 @@
             this.аннотацииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ключевыеСловаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.фильтрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выбратьФильтрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сброситьФильтрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.контекстныйАнализToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.получитьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.названияToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -1726,10 +1728,26 @@
             // 
             // фильтрыToolStripMenuItem
             // 
+            this.фильтрыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.выбратьФильтрыToolStripMenuItem,
+            this.сброситьФильтрыToolStripMenuItem});
             this.фильтрыToolStripMenuItem.Name = "фильтрыToolStripMenuItem";
             this.фильтрыToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.фильтрыToolStripMenuItem.Text = "Фильтры";
-            this.фильтрыToolStripMenuItem.Click += new System.EventHandler(this.фильтрыToolStripMenuItem_Click);
+            // 
+            // выбратьФильтрыToolStripMenuItem
+            // 
+            this.выбратьФильтрыToolStripMenuItem.Name = "выбратьФильтрыToolStripMenuItem";
+            this.выбратьФильтрыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.выбратьФильтрыToolStripMenuItem.Text = "Выбрать фильтры";
+            this.выбратьФильтрыToolStripMenuItem.Click += new System.EventHandler(this.выбратьФильтрыToolStripMenuItem_Click);
+            // 
+            // сброситьФильтрыToolStripMenuItem
+            // 
+            this.сброситьФильтрыToolStripMenuItem.Name = "сброситьФильтрыToolStripMenuItem";
+            this.сброситьФильтрыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сброситьФильтрыToolStripMenuItem.Text = "Сбросить фильтры";
+            this.сброситьФильтрыToolStripMenuItem.Click += new System.EventHandler(this.сброситьФильтрыToolStripMenuItem_Click);
             // 
             // контекстныйАнализToolStripMenuItem
             // 
@@ -2185,6 +2203,8 @@
         private System.Windows.Forms.CheckBox chbServer;
         private System.Windows.Forms.ToolStripMenuItem списокИсточниковToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem обновитьИсточникиПубликацийToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem выбратьФильтрыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сброситьФильтрыToolStripMenuItem;
     }
 }
 

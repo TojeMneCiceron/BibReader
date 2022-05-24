@@ -19,9 +19,9 @@ namespace BibReader.Readers
             int i = 0;
             while (authors != "" && i < authors.Length - 1)
             {
-                if (isAuthor(authors[i], authors[i + 1]))
+                if (isAuthor(authors[i], authors[i + 1]) && authors[i - 1] != 'M' && authors[i] != 'c')
                 {
-                    strAuthors += authors.Substring(0, i) + " and ";
+                    strAuthors += authors.Substring(0, i + 1) + " and ";
                     authors = authors.Substring(i + 1);
                     i = -1;
                 }

@@ -305,6 +305,7 @@ namespace BibReader
                 //check if got unknown sources
                 CheckUnknownSources();
 
+                lvLibItems.Items.Clear();
                 LoadFilters();
                 var time = DateTime.Now;
                 log.Write($"{ time.ToString() }");
@@ -321,13 +322,13 @@ namespace BibReader
                 btUnique.Enabled = true;
                 btRelevance.Enabled = false;
                 добавитьToolStripMenuItem.Enabled = true;
-                UpdateUI();
+                UpdateUI(true);
             }
         }
 
         private void LoadFilters()
         {
-            UpdateStatistic();
+            UpdateStatistic(true);
             Filter.Clear();
             Filter.Conferences.AddRange(Stat.Conference.Keys.Select(key => key));
             Filter.Years.AddRange(Stat.Years.Keys.Select(key => key));
@@ -362,7 +363,7 @@ namespace BibReader
                 btFirst.Enabled = false;
                 btUnique.Enabled = true;
                 btRelevance.Enabled = false;
-                UpdateUI();
+                UpdateUI(true);
             }
         }
 
@@ -423,27 +424,31 @@ namespace BibReader
             btUnique.Enabled = true;
             btFirst.Enabled = false;
             добавитьToolStripMenuItem.Enabled = true;
-            UpdateUI();
+            UpdateUI(true);
         }
 
         private void btUnique_Click(object sender, EventArgs e)
         {
+            LoadFilters();
             UniqueTitles();
             btRelevance.Enabled = true;
             btUnique.Enabled = false;
             добавитьToolStripMenuItem.Enabled = false;
-            UpdateUI();
+            UpdateUI(true);
+            //LoadLibItems();
         }
 
         private void btRelevance_Click(object sender, EventArgs e)
         {
+            LoadFilters();
             RelevanceData();
             btFirst.Enabled = true;
             btRelevance.Enabled = false;
-            UpdateUI();
+            UpdateUI(true);
+            //LoadLibItems();
         }
 
-        private void UpdateStatistic()
+        private void UpdateStatistic(bool removeFilters)
         {
             Stat.Corpus corpus = Stat.Corpus.First;
             if (btRelevance.Enabled)
@@ -451,7 +456,15 @@ namespace BibReader
             if (btFirst.Enabled)
                 corpus = Stat.Corpus.Relevance;
 
-            Stat.CalculateStatistic(libItems, corpus);
+            List<LibItem> items = new List<LibItem>();
+
+            foreach (ListViewItem lvi in lvLibItems.Items)
+                items.Add((LibItem)lvi.Tag);
+
+            if (items.Count == 0 || removeFilters)
+                Stat.CalculateStatistic(libItems, corpus);
+            else
+                Stat.CalculateStatistic(items, corpus);
             FormStatistic.LoadSourseStatistic(lvSourceStatistic);
             FormStatistic.LoadYearStatistic(lvYearStatistic);
             FormStatistic.LoadTypeStatistic(lvTypeOfDoc);
@@ -461,9 +474,9 @@ namespace BibReader
             FormStatistic.LoadAuthorsCountStatistic(lvAuthorsCountStatistic);
         }
 
-        private void UpdateUI()
+        private void UpdateUI(bool removeFilters)
         {
-            UpdateStatistic();
+            UpdateStatistic(removeFilters);
             UpdateBibReference();
             SelectFstLibItem();
         }
@@ -629,27 +642,6 @@ namespace BibReader
             foreach (TabPage tp in tabControlForStatistic.TabPages)
                 listOfTables.Add(tp.Controls.OfType<ListView>().First());
             return listOfTables;
-        }
-
-        private void фильтрыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (var form = new FiltersForm(LastOpenedFilterTab)
-            {
-                Geography = Stat.Geography.Keys.ToList(),
-                Sources = Stat.Sources.Keys.ToList(),
-                Types = Stat.Types.Keys.ToList(),
-                Journals = Stat.Journal.Keys.ToList(),
-                Years = Stat.Years.Keys.ToList(),
-                Conference = Stat.Conference.Keys.ToList(),
-                AuthorsCount = Stat.AuthorsCount.Keys.ToList()
-            })
-            {
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    LoadLibItems();
-                }
-                LastOpenedFilterTab = form.LastOpenedTab;
-            }
         }
 
         private void OpenDiagram(Chart chart, string[] xValues, int[] yValues, ListView lv)
@@ -1048,8 +1040,8 @@ namespace BibReader
         private void btEditNumber_Click(object sender, EventArgs e)
         {
             setReadOnlyTextBox(tbNumber, false);
-            setVisibleButton(btEditAuthors, false);
-            setVisibleButton(btSaveAuthors, true);
+            setVisibleButton(btEditNumber, false);
+            setVisibleButton(btSaveNumber, true);
         }
 
         private void btEditPages_Click(object sender, EventArgs e)
@@ -1390,7 +1382,7 @@ namespace BibReader
 
             }
 
-            UpdateStatistic();
+            UpdateStatistic(true);
         }
 
         private void обновитьИсточникиПубликацийToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1413,6 +1405,35 @@ namespace BibReader
             TextWriter textWriter = new StreamWriter("sources.xml");
             xs.Serialize(textWriter, customSources);
             textWriter.Close();
+        }
+
+        private void сброситьФильтрыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadFilters();
+            LoadLibItems();
+        }
+
+        private void выбратьФильтрыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new FiltersForm(LastOpenedFilterTab)
+            {
+                Geography = Stat.Geography.Keys.ToList(),
+                Sources = Stat.Sources.Keys.ToList(),
+                Types = Stat.Types.Keys.ToList(),
+                Journals = Stat.Journal.Keys.ToList(),
+                Years = Stat.Years.Keys.ToList(),
+                Conference = Stat.Conference.Keys.ToList(),
+                AuthorsCount = Stat.AuthorsCount.Keys.ToList()
+            })
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    LoadLibItems();
+                    //???
+                    UpdateUI(false);
+                }
+                LastOpenedFilterTab = form.LastOpenedTab;
+            }
         }
     }
 }

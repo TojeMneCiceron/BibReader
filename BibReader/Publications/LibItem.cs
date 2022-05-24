@@ -43,7 +43,10 @@ namespace BibReader.Publications
 
             string firstLine = bibTexString.Split('\n').First();
             string res = firstLine.Substring(firstLine.IndexOf('{') + 1);
-            BibTexId = res.Substring(0, res.LastIndexOf(','));
+            if (res.Length > 1)
+                BibTexId = res.Substring(0, res.LastIndexOf(','));
+            else
+                BibTexId = "";
         }
 
         public LibItem(LibItem item)

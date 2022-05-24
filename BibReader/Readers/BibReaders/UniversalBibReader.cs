@@ -159,7 +159,7 @@ namespace BibReader.Readers
             Regex r = new Regex(@"{\w}");
             Regex rs = new Regex(@"\s+");
             //remove extra spaces and \
-            string res = rs.Replace(str, " ").Replace("{\"}", "\"").Replace(@"\", "").Replace("<i>", "").Replace("</i>", "");
+            string res = rs.Replace(str, " ").Replace("{\"}", "\"").Replace(@"\", "").Replace("<i>", "").Replace("</i>", "").Replace("{[}", "[").Replace("]", "]");
 
             var matches = r.Matches(res);
 
@@ -212,6 +212,22 @@ namespace BibReader.Readers
         //    return res;
         //}
 
+        private bool Caps(string s)
+        {
+            int caps = s.Where(x => x >= 'A' && x <= 'Z').Count();
+            return (double)caps / s.Length > 0.6;
+        }
+
+        private string FixJournal(string j)
+        {
+            Regex regex = new Regex(@"\([A-Za-z0-9 ]+\)");
+            string abb = regex.Match(j).Value;
+            string res = j.ToLower();
+            if (abb != "")
+                res = res.Replace(abb.ToLower(), abb);
+
+            return res;
+        }
         private List<LibItem> GetLibItems(StreamReader reader, List<Source> defaultSources, List<Source> customSources)
         {
             string extra = "";
@@ -388,6 +404,17 @@ namespace BibReader.Readers
 
                 if (Tags.TagValues["source"] == "")
                     newItem = IdentifySource(newItem, defaultSources, customSources);
+
+
+                //deleting caps
+                if (Caps(newItem.Abstract))
+                    newItem.Abstract = newItem.Abstract.ToLower();
+                if (Caps(newItem.Title))
+                    newItem.Title = newItem.Title.ToLower();
+                if (Caps(newItem.Journal))
+                {
+                    newItem.Journal = FixJournal(newItem.Journal);
+                }
 
                 Items.Add(newItem);
                 Tags.NewTags();

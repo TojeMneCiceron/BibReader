@@ -26,12 +26,27 @@ namespace BibReader.Statistic
 
         public static void CalculateStatistic(List<LibItem> libItems, Corpus corpus)
         {
-            if (corpus == Corpus.First)
+            //if (corpus == Corpus.First)
+            //{
+            //    Sources = new Dictionary<string, int>();
+            //    SourcesUnique = new Dictionary<string, int>();
+            //    SourcesRelevance = new Dictionary<string, int>();
+            //}
+            switch (corpus)
             {
-                Sources = new Dictionary<string, int>();
-                SourcesUnique = new Dictionary<string, int>();
-                SourcesRelevance = new Dictionary<string, int>();
+                case Corpus.First:
+                    Sources = new Dictionary<string, int>();
+                    SourcesUnique = new Dictionary<string, int>();
+                    SourcesRelevance = new Dictionary<string, int>();
+                    break;
+                case Corpus.Unique:
+                    SourcesUnique = new Dictionary<string, int>();
+                    break;
+                case Corpus.Relevance:
+                    SourcesRelevance = new Dictionary<string, int>();
+                    break;
             }
+
             Years = new Dictionary<string, int>();
             Types = new Dictionary<string, int>();
             Journal = new Dictionary<string, int>();

@@ -18,7 +18,7 @@ namespace BibReader.Readers.BibReaders
         public bool HasDoubleBracketsClosing { get; set; }
         public bool TagCapital { get; set; }
         public bool TagValueSpaces { get; set; }
-        public bool HasAsterisks { get; set; }
+        public bool HasAsterisks { get; set; } // не используется
 
         public Source() { }
 
@@ -38,25 +38,13 @@ namespace BibReader.Readers.BibReaders
         public bool SourceAffiliation(LibItem item)
         {
             Regex regex = new Regex($"^{Pattern}$");
-            //return false;
 
-            //bool hasAsterisks;
-            //if (item.Keywords.Contains("*"))
-            //bool hasAsterisks = Regex.Matches(item.Keywords, @"\*").Count > Regex.Matches(item.Keywords, @"\{\*\}").Count;
-
-            bool res = regex.IsMatch(item.BibTexId)
+            return regex.IsMatch(item.BibTexId)
                 && item.BibTexString.Contains("{{") == HasDoubleBracketsOpening
                 && item.BibTexString.Contains("}}") == HasDoubleBracketsClosing
                 && item.BibTexString.Contains("\nTitle") == TagCapital
                 && item.BibTexString.Contains("itle = ") == TagValueSpaces
-                //&& hasAsterisks == HasAsterisks 
                 && item.BibTexFirstTag.ToLower() == FirstTag.ToLower();
-
-            //int a = 0;
-            //if (Name == "ACM DL" && !res)
-            //    a += 1;
-
-            return res;
         }
 
         public string Features()

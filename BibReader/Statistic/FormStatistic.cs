@@ -27,8 +27,10 @@ namespace BibReader.Statistic
                     new string[] {
                         (i.Key == "") ? "Неизвестный источник" : i.Key,
                         i.Value.ToString(),
-                        Stat.SourcesUnique[i.Key].ToString(),
-                        Stat.SourcesRelevance[i.Key].ToString()
+                        Stat.SourcesUnique.ContainsKey(i.Key) ?
+                        Stat.SourcesUnique[i.Key].ToString() : 0.ToString(),
+                        Stat.SourcesRelevance.ContainsKey(i.Key) ?
+                        Stat.SourcesRelevance[i.Key].ToString(): 0.ToString(),
                     })
                 )
                 .ToArray()
