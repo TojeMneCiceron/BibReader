@@ -72,7 +72,7 @@ namespace BibReader.BibReference.TypesOfSourse
 
             Authors = AuthorsParser.ParseAuthors(libItem.Authors, libItem.Source);
             Title = libItem.Title;
-            Name = libItem.Journal;
+            Name = libItem.JournalAbbreviation;
             City = string.Empty;
             Publisher = libItem.Publisher;
             Year = year;

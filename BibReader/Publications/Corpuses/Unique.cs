@@ -7,7 +7,7 @@ using BibReader.Publications;
 
 namespace BibReader.Corpuses
 {
-    class Unique
+    public class Unique
     {
         const int distance = 5;
         Dictionary<string, int> UniqueTitles = new Dictionary<string, int>();

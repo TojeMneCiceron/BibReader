@@ -178,11 +178,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BibReaderTest.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BibReader\BibReader.csproj">
+      <Project>{2259366a-f9da-4032-9662-ff3884963504}</Project>
+      <Name>BibReader</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

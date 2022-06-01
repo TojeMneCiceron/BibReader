@@ -194,6 +194,7 @@
             this.btNextFindedLibItem = new System.Windows.Forms.Button();
             this.tbFind = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tt = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpData.SuspendLayout();
@@ -328,6 +329,7 @@
             this.btSaveArticleNumber.Name = "btSaveArticleNumber";
             this.btSaveArticleNumber.Size = new System.Drawing.Size(25, 21);
             this.btSaveArticleNumber.TabIndex = 28;
+            this.tt.SetToolTip(this.btSaveArticleNumber, "Сохранить");
             this.btSaveArticleNumber.UseVisualStyleBackColor = true;
             this.btSaveArticleNumber.Visible = false;
             this.btSaveArticleNumber.Click += new System.EventHandler(this.btSaveArticleNumber_Click);
@@ -340,6 +342,7 @@
             this.btEditArticleNumber.Name = "btEditArticleNumber";
             this.btEditArticleNumber.Size = new System.Drawing.Size(25, 21);
             this.btEditArticleNumber.TabIndex = 29;
+            this.tt.SetToolTip(this.btEditArticleNumber, "Редактировать");
             this.btEditArticleNumber.UseVisualStyleBackColor = true;
             this.btEditArticleNumber.Click += new System.EventHandler(this.btEditArticleNumber_Click);
             // 
@@ -372,6 +375,7 @@
             this.btSaveSource.Name = "btSaveSource";
             this.btSaveSource.Size = new System.Drawing.Size(25, 21);
             this.btSaveSource.TabIndex = 0;
+            this.tt.SetToolTip(this.btSaveSource, "Сохранить");
             this.btSaveSource.UseVisualStyleBackColor = true;
             this.btSaveSource.Visible = false;
             this.btSaveSource.Click += new System.EventHandler(this.btSaveSource_Click);
@@ -384,6 +388,7 @@
             this.btSaveKeywords.Name = "btSaveKeywords";
             this.btSaveKeywords.Size = new System.Drawing.Size(25, 21);
             this.btSaveKeywords.TabIndex = 0;
+            this.tt.SetToolTip(this.btSaveKeywords, "Сохранить");
             this.btSaveKeywords.UseVisualStyleBackColor = true;
             this.btSaveKeywords.Visible = false;
             this.btSaveKeywords.Click += new System.EventHandler(this.btSaveKeywords_Click);
@@ -396,6 +401,7 @@
             this.btSaveAffiliation.Name = "btSaveAffiliation";
             this.btSaveAffiliation.Size = new System.Drawing.Size(25, 21);
             this.btSaveAffiliation.TabIndex = 0;
+            this.tt.SetToolTip(this.btSaveAffiliation, "Сохранить");
             this.btSaveAffiliation.UseVisualStyleBackColor = true;
             this.btSaveAffiliation.Visible = false;
             this.btSaveAffiliation.Click += new System.EventHandler(this.btSaveAffiliation_Click);
@@ -408,6 +414,7 @@
             this.btSaveUrl.Name = "btSaveUrl";
             this.btSaveUrl.Size = new System.Drawing.Size(25, 21);
             this.btSaveUrl.TabIndex = 0;
+            this.tt.SetToolTip(this.btSaveUrl, "Сохранить");
             this.btSaveUrl.UseVisualStyleBackColor = true;
             this.btSaveUrl.Visible = false;
             this.btSaveUrl.Click += new System.EventHandler(this.btSaveUrl_Click);
@@ -420,6 +427,7 @@
             this.btSaveDoi.Name = "btSaveDoi";
             this.btSaveDoi.Size = new System.Drawing.Size(25, 21);
             this.btSaveDoi.TabIndex = 0;
+            this.tt.SetToolTip(this.btSaveDoi, "Сохранить");
             this.btSaveDoi.UseVisualStyleBackColor = true;
             this.btSaveDoi.Visible = false;
             this.btSaveDoi.Click += new System.EventHandler(this.btSaveDoi_Click);
@@ -432,6 +440,7 @@
             this.btSavePages.Name = "btSavePages";
             this.btSavePages.Size = new System.Drawing.Size(25, 21);
             this.btSavePages.TabIndex = 0;
+            this.tt.SetToolTip(this.btSavePages, "Сохранить");
             this.btSavePages.UseVisualStyleBackColor = true;
             this.btSavePages.Visible = false;
             this.btSavePages.Click += new System.EventHandler(this.btSavePages_Click);
@@ -444,6 +453,7 @@
             this.btSaveNumber.Name = "btSaveNumber";
             this.btSaveNumber.Size = new System.Drawing.Size(25, 21);
             this.btSaveNumber.TabIndex = 0;
+            this.tt.SetToolTip(this.btSaveNumber, "Сохранить");
             this.btSaveNumber.UseVisualStyleBackColor = true;
             this.btSaveNumber.Visible = false;
             this.btSaveNumber.Click += new System.EventHandler(this.btSaveNumber_Click);
@@ -456,6 +466,7 @@
             this.btSavePublisher.Name = "btSavePublisher";
             this.btSavePublisher.Size = new System.Drawing.Size(25, 21);
             this.btSavePublisher.TabIndex = 0;
+            this.tt.SetToolTip(this.btSavePublisher, "Сохранить");
             this.btSavePublisher.UseVisualStyleBackColor = true;
             this.btSavePublisher.Visible = false;
             this.btSavePublisher.Click += new System.EventHandler(this.btSavePublisher_Click);
@@ -468,6 +479,7 @@
             this.btSaveVolume.Name = "btSaveVolume";
             this.btSaveVolume.Size = new System.Drawing.Size(25, 21);
             this.btSaveVolume.TabIndex = 0;
+            this.tt.SetToolTip(this.btSaveVolume, "Сохранить");
             this.btSaveVolume.UseVisualStyleBackColor = true;
             this.btSaveVolume.Visible = false;
             this.btSaveVolume.Click += new System.EventHandler(this.btSaveVolume_Click);
@@ -480,6 +492,7 @@
             this.btSaveYear.Name = "btSaveYear";
             this.btSaveYear.Size = new System.Drawing.Size(25, 21);
             this.btSaveYear.TabIndex = 0;
+            this.tt.SetToolTip(this.btSaveYear, "Сохранить");
             this.btSaveYear.UseVisualStyleBackColor = true;
             this.btSaveYear.Visible = false;
             this.btSaveYear.Click += new System.EventHandler(this.btSaveYear_Click);
@@ -492,6 +505,7 @@
             this.btSaveJournal.Name = "btSaveJournal";
             this.btSaveJournal.Size = new System.Drawing.Size(25, 21);
             this.btSaveJournal.TabIndex = 0;
+            this.tt.SetToolTip(this.btSaveJournal, "Сохранить");
             this.btSaveJournal.UseVisualStyleBackColor = true;
             this.btSaveJournal.Visible = false;
             this.btSaveJournal.Click += new System.EventHandler(this.btSaveJournal_Click);
@@ -504,6 +518,7 @@
             this.btSaveAbstract.Name = "btSaveAbstract";
             this.btSaveAbstract.Size = new System.Drawing.Size(25, 21);
             this.btSaveAbstract.TabIndex = 0;
+            this.tt.SetToolTip(this.btSaveAbstract, "Сохранить");
             this.btSaveAbstract.UseVisualStyleBackColor = true;
             this.btSaveAbstract.Visible = false;
             this.btSaveAbstract.Click += new System.EventHandler(this.btSaveAbstract_Click);
@@ -516,6 +531,7 @@
             this.btSaveTitle.Name = "btSaveTitle";
             this.btSaveTitle.Size = new System.Drawing.Size(25, 21);
             this.btSaveTitle.TabIndex = 0;
+            this.tt.SetToolTip(this.btSaveTitle, "Сохранить");
             this.btSaveTitle.UseVisualStyleBackColor = true;
             this.btSaveTitle.Visible = false;
             this.btSaveTitle.Click += new System.EventHandler(this.btSaveTitle_Click);
@@ -528,6 +544,7 @@
             this.btSaveAuthors.Name = "btSaveAuthors";
             this.btSaveAuthors.Size = new System.Drawing.Size(25, 21);
             this.btSaveAuthors.TabIndex = 0;
+            this.tt.SetToolTip(this.btSaveAuthors, "Сохранить");
             this.btSaveAuthors.UseVisualStyleBackColor = true;
             this.btSaveAuthors.Visible = false;
             this.btSaveAuthors.Click += new System.EventHandler(this.btSaveAuthors_Click);
@@ -540,6 +557,7 @@
             this.btEditPublisher.Name = "btEditPublisher";
             this.btEditPublisher.Size = new System.Drawing.Size(25, 21);
             this.btEditPublisher.TabIndex = 0;
+            this.tt.SetToolTip(this.btEditPublisher, "Редактировать");
             this.btEditPublisher.UseVisualStyleBackColor = true;
             this.btEditPublisher.Click += new System.EventHandler(this.btEditPublisher_Click);
             // 
@@ -551,6 +569,7 @@
             this.btEditNumber.Name = "btEditNumber";
             this.btEditNumber.Size = new System.Drawing.Size(25, 21);
             this.btEditNumber.TabIndex = 0;
+            this.tt.SetToolTip(this.btEditNumber, "Редактировать");
             this.btEditNumber.UseVisualStyleBackColor = true;
             this.btEditNumber.Click += new System.EventHandler(this.btEditNumber_Click);
             // 
@@ -562,6 +581,7 @@
             this.btEditPages.Name = "btEditPages";
             this.btEditPages.Size = new System.Drawing.Size(25, 21);
             this.btEditPages.TabIndex = 0;
+            this.tt.SetToolTip(this.btEditPages, "Редактировать");
             this.btEditPages.UseVisualStyleBackColor = true;
             this.btEditPages.Click += new System.EventHandler(this.btEditPages_Click);
             // 
@@ -573,6 +593,7 @@
             this.btEditDoi.Name = "btEditDoi";
             this.btEditDoi.Size = new System.Drawing.Size(25, 21);
             this.btEditDoi.TabIndex = 0;
+            this.tt.SetToolTip(this.btEditDoi, "Редактировать");
             this.btEditDoi.UseVisualStyleBackColor = true;
             this.btEditDoi.Click += new System.EventHandler(this.btEditDoi_Click);
             // 
@@ -584,6 +605,7 @@
             this.btEditUrl.Name = "btEditUrl";
             this.btEditUrl.Size = new System.Drawing.Size(25, 21);
             this.btEditUrl.TabIndex = 0;
+            this.tt.SetToolTip(this.btEditUrl, "Редактировать");
             this.btEditUrl.UseVisualStyleBackColor = true;
             this.btEditUrl.Click += new System.EventHandler(this.btEditUrl_Click);
             // 
@@ -595,6 +617,7 @@
             this.btEditAffiliation.Name = "btEditAffiliation";
             this.btEditAffiliation.Size = new System.Drawing.Size(25, 21);
             this.btEditAffiliation.TabIndex = 0;
+            this.tt.SetToolTip(this.btEditAffiliation, "Редактировать");
             this.btEditAffiliation.UseVisualStyleBackColor = true;
             this.btEditAffiliation.Click += new System.EventHandler(this.btEditAffiliation_Click);
             // 
@@ -606,6 +629,7 @@
             this.btEditKeywords.Name = "btEditKeywords";
             this.btEditKeywords.Size = new System.Drawing.Size(25, 21);
             this.btEditKeywords.TabIndex = 0;
+            this.tt.SetToolTip(this.btEditKeywords, "Редактировать");
             this.btEditKeywords.UseVisualStyleBackColor = true;
             this.btEditKeywords.Click += new System.EventHandler(this.btEditKeywords_Click);
             // 
@@ -617,6 +641,7 @@
             this.btEditSource.Name = "btEditSource";
             this.btEditSource.Size = new System.Drawing.Size(25, 21);
             this.btEditSource.TabIndex = 0;
+            this.tt.SetToolTip(this.btEditSource, "Редактировать");
             this.btEditSource.UseVisualStyleBackColor = true;
             this.btEditSource.Click += new System.EventHandler(this.btEditSource_Click);
             // 
@@ -628,6 +653,7 @@
             this.btEditVolume.Name = "btEditVolume";
             this.btEditVolume.Size = new System.Drawing.Size(25, 21);
             this.btEditVolume.TabIndex = 0;
+            this.tt.SetToolTip(this.btEditVolume, "Редактировать");
             this.btEditVolume.UseVisualStyleBackColor = true;
             this.btEditVolume.Click += new System.EventHandler(this.btEditVolume_Click);
             // 
@@ -639,6 +665,7 @@
             this.btEditYear.Name = "btEditYear";
             this.btEditYear.Size = new System.Drawing.Size(25, 21);
             this.btEditYear.TabIndex = 0;
+            this.tt.SetToolTip(this.btEditYear, "Редактировать");
             this.btEditYear.UseVisualStyleBackColor = true;
             this.btEditYear.Click += new System.EventHandler(this.btEditYear_Click);
             // 
@@ -650,6 +677,7 @@
             this.btEditJournal.Name = "btEditJournal";
             this.btEditJournal.Size = new System.Drawing.Size(25, 21);
             this.btEditJournal.TabIndex = 0;
+            this.tt.SetToolTip(this.btEditJournal, "Редактировать");
             this.btEditJournal.UseVisualStyleBackColor = true;
             this.btEditJournal.Click += new System.EventHandler(this.btEditJournal_Click);
             // 
@@ -661,6 +689,7 @@
             this.btEditAbstract.Name = "btEditAbstract";
             this.btEditAbstract.Size = new System.Drawing.Size(25, 21);
             this.btEditAbstract.TabIndex = 0;
+            this.tt.SetToolTip(this.btEditAbstract, "Редактировать");
             this.btEditAbstract.UseVisualStyleBackColor = true;
             this.btEditAbstract.Click += new System.EventHandler(this.btEditAbstract_Click);
             // 
@@ -672,6 +701,7 @@
             this.btEditTitle.Name = "btEditTitle";
             this.btEditTitle.Size = new System.Drawing.Size(25, 21);
             this.btEditTitle.TabIndex = 0;
+            this.tt.SetToolTip(this.btEditTitle, "Редактировать");
             this.btEditTitle.UseVisualStyleBackColor = true;
             this.btEditTitle.Click += new System.EventHandler(this.btEditTitle_Click);
             // 
@@ -683,6 +713,7 @@
             this.btEditAuthors.Name = "btEditAuthors";
             this.btEditAuthors.Size = new System.Drawing.Size(25, 21);
             this.btEditAuthors.TabIndex = 0;
+            this.tt.SetToolTip(this.btEditAuthors, "Редактировать");
             this.btEditAuthors.UseVisualStyleBackColor = true;
             this.btEditAuthors.Click += new System.EventHandler(this.btEditAuthor_Click);
             // 
@@ -1838,6 +1869,7 @@
             this.btFirst.Size = new System.Drawing.Size(112, 52);
             this.btFirst.TabIndex = 5;
             this.btFirst.Text = "Корпус первичных документов";
+            this.tt.SetToolTip(this.btFirst, "Загрузить исходный корпус");
             this.btFirst.UseVisualStyleBackColor = false;
             this.btFirst.Click += new System.EventHandler(this.btFirst_Click);
             // 
@@ -1850,6 +1882,7 @@
             this.btUnique.Size = new System.Drawing.Size(112, 52);
             this.btUnique.TabIndex = 6;
             this.btUnique.Text = "Корпус уникальных документов";
+            this.tt.SetToolTip(this.btUnique, "Удалить дублирующиеся публикации");
             this.btUnique.UseVisualStyleBackColor = false;
             this.btUnique.Click += new System.EventHandler(this.btUnique_Click);
             // 
@@ -1862,6 +1895,7 @@
             this.btRelevance.Size = new System.Drawing.Size(111, 52);
             this.btRelevance.TabIndex = 7;
             this.btRelevance.Text = "Корпус релевантных документов";
+            this.tt.SetToolTip(this.btRelevance, "Удалить\r\n- слишком короткие публикации\r\n- публикации без авторов");
             this.btRelevance.UseVisualStyleBackColor = false;
             this.btRelevance.Click += new System.EventHandler(this.btRelevance_Click);
             // 
@@ -1960,6 +1994,7 @@
             this.btPrevFindedLibItem.Size = new System.Drawing.Size(29, 21);
             this.btPrevFindedLibItem.TabIndex = 17;
             this.btPrevFindedLibItem.Text = "<<";
+            this.tt.SetToolTip(this.btPrevFindedLibItem, "Предыдущая публикация");
             this.btPrevFindedLibItem.UseVisualStyleBackColor = false;
             this.btPrevFindedLibItem.Click += new System.EventHandler(this.btPrevFindedLibItem_Click);
             // 
@@ -1972,6 +2007,7 @@
             this.btNextFindedLibItem.Size = new System.Drawing.Size(29, 21);
             this.btNextFindedLibItem.TabIndex = 16;
             this.btNextFindedLibItem.Text = ">>";
+            this.tt.SetToolTip(this.btNextFindedLibItem, "Следующая публикация");
             this.btNextFindedLibItem.UseVisualStyleBackColor = false;
             this.btNextFindedLibItem.Click += new System.EventHandler(this.btNextFindedLibItem_Click);
             // 
@@ -2205,6 +2241,7 @@
         private System.Windows.Forms.ToolStripMenuItem обновитьИсточникиПубликацийToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выбратьФильтрыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сброситьФильтрыToolStripMenuItem;
+        private System.Windows.Forms.ToolTip tt;
     }
 }
 

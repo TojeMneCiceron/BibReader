@@ -36,6 +36,7 @@ namespace BibReader.Publications
         public string BibTexId { get; set; }
         public string BibTexFirstTag { get; set; }
         public bool UnknownSource { get; set; } = false;
+        public string JournalAbbreviation { get; set; }
 
         public void SetBibTexString(string bibTexString)
         {
@@ -47,6 +48,12 @@ namespace BibReader.Publications
                 BibTexId = res.Substring(0, res.LastIndexOf(','));
             else
                 BibTexId = "";
+        }
+
+        public void SetJournal(string j)
+        {
+            Journal = j;
+            JournalAbbreviation = MakeAbbreviations(j);
         }
 
         public LibItem(LibItem item)
@@ -70,10 +77,11 @@ namespace BibReader.Publications
             Address = item.Address;
             ArticleNumber = item.ArticleNumber;
             FormGeography();
+            JournalAbbreviation = item.JournalAbbreviation;
         }
         public LibItem(string authors, string doi, string year, string booktitle, string title, string journalName, 
             string volume, string pages, string url, string affiliation, string @abstract, string keywords, string publisher, 
-            string source, string number, string originalTitle, string type, string address, string articleNumber)
+            string source, string number, string originalTitle, string type, string address, string articleNumber, string journalAbb)
         {
             Authors = authors;
             Doi = doi;
@@ -94,6 +102,7 @@ namespace BibReader.Publications
             Address = address;
             ArticleNumber = articleNumber;
             FormGeography();
+            JournalAbbreviation = journalAbb;
         }
 
         public LibItem(Dictionary<string, string> dict)
@@ -117,6 +126,7 @@ namespace BibReader.Publications
             Address = dict["address"];
             ArticleNumber = dict["articleNumber"];
             FormGeography();
+            JournalAbbreviation = MakeAbbreviations(dict["journal"]);
         }
 
         public bool AbstractIsEmpty => Abstract == string.Empty ? true : false;
@@ -182,6 +192,7 @@ namespace BibReader.Publications
             Address = item.Address;
             ArticleNumber = item.ArticleNumber;
             Geography = new List<string>(item.Geography);
+            JournalAbbreviation = item.JournalAbbreviation;
         }
 
         public int AuthorsCount()
@@ -192,7 +203,7 @@ namespace BibReader.Publications
             return new Regex(" and ").Matches(Authors).Count + 1;
         }
 
-        private void FormGeography()
+        public void FormGeography()
         {
             if (Affiliation != string.Empty)
             {
@@ -221,8 +232,17 @@ namespace BibReader.Publications
                     if (infoArray.Last() == "Russian Federation")
                         infoArray[infoArray.Length - 1] = "Russia";
 
-                    if (infoArray.Last().Contains("China"))
+                    if (infoArray.Last().Contains("China")
+                        || infoArray.Last() == "Hong Kong"
+                        || infoArray.Last() == "Macau")
                         infoArray[infoArray.Length - 1] = "China";
+
+                    if (infoArray.Last() == "Great Britain"
+                        || infoArray.Last() == "UK"
+                        || infoArray.Last() == "Wales"
+                        || infoArray.Last() == "Scotland"
+                        || infoArray.Last() == "Northern Ireland")
+                        infoArray[infoArray.Length - 1] = "United Kingdom";
 
                     infoArray[infoArray.Length - 1] = infoArray[infoArray.Length - 1].Replace(".", "");
 
@@ -293,6 +313,106 @@ namespace BibReader.Publications
             writer.WriteLine("}");
 
             return sb.ToString();
+        }
+
+        Dictionary<string, string> Abbreviations = new Dictionary<string, string>
+        {
+            {"Acoustics","Acoust."},
+            {"Administration","Admin."},
+            {"Administrative","Administ."},
+            {"American","Amer."},
+            {"Analysis","Anal."},
+            {"Annals","Ann."},
+            {"Annual","Annu."},
+            {"Apparatus","App."},
+            {"Applications","Applicat."},
+            {"Applied","Appl."},
+            {"Association","Assoc."},
+            {"Automatic","Automat."},
+            {"Broadcasting","Broadcast."},
+            {"Business","Bus."},
+            {"Communications","Commun."},
+            {"Computers","Comput."},
+            {"Computer","Comput."},
+            {"Colloquium","Colloq."},
+            {"Conference","Conf."},
+            {"Congress","Congr."},
+            {"Convention","Conv."},
+            {"Correspondence","Corresp."},
+            {"Cybernetics","Cybern."},
+            {"Department","Dept."},
+            {"Development","Develop."},
+            {"Digest","Dig."},
+            {"Economics","Econ."},
+            {"Economic","Econ."},
+            {"Education","Educ."},
+            {"Electrical","Elect."},
+            {"Electronic","Electron."},
+            {"Engineering","Eng."},
+            {"Ergonomics","Ergonom." },
+            {"Evolutionary","Evol."},
+            {"Exposition","Expo."},
+            {"Foundation","Found."},
+            {"Geoscience","Geosci."},
+            {"Graphics","Graph."},
+            {"Industrial","Ind."},
+            {"Industry","Ind."},
+            {"Information","Inform."},
+            {"Institute","Inst."},
+            {"Intelligence","Intell."},
+            {"International","Int."},
+            {"Journal","J."},
+            {"Letters","Lett."},
+            {"Letter","Lett."},
+            {"Machine","Mach."},
+            {"Magazine","Mag."},
+            {"Management","Manage."},
+            {"Managing","Manag."},
+            {"Mathematics","Math."},
+            {"Mathematic","Math."},
+            {"Mathematical","Math."},
+            {"Mechanical","Mech."},
+            {"National","Nat."},
+            {"Newsletter","Newslett."},
+            {"Nuclear","Nucl."},
+            {"Occupation","Occupat."},
+            {"Philosophical","Philosph."},
+            {"Proceedings","Proc."},
+            {"Processing","Process."},
+            {"Production","Prod."},
+            {"Productivity","Productiv."},
+            {"Quarterly","Quart."},
+            {"Record","Rec."},
+            {"Reliability","Rel."},
+            {"Report","Rep."},
+            {"Royal","Roy."},
+            {"Science","Sci."},
+            {"Selected","Select."},
+            {"Society","Soc."},
+            {"Sociological","Sociol."},
+            {"Statistics","Stat."},
+            {"Studies","Stud."},
+            {"Supplement","Suppl."},
+            {"Symposium","Symp."},
+            {"Systems","Syst."},
+            {"Technical","Tech."},
+            {"Telecommunication","Telecommun."},
+            {"Transactions","Trans."},
+            {"Vehicular","Veh."},
+            {"Working","Work."},
+        };
+
+        private string MakeAbbreviations(string s)
+        {
+            if (s == "")
+                return s;
+
+            foreach (var key in Abbreviations.Keys)
+            {
+                s = s.Replace(key, Abbreviations[key]).Replace(key.ToLower(), Abbreviations[key]);
+            }
+
+            return s;
         }
     }
 }

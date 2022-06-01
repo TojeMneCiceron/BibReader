@@ -36,6 +36,13 @@ namespace BibReader
         List<Source> customSources = new List<Source>();
         XmlSerializer xs = new XmlSerializer(typeof(List<Source>));
 
+        enum NextCorpus
+        {
+            First, Unique, Relevance
+        }
+
+        NextCorpus nextCorpus = NextCorpus.Unique;
+
         private StreamReader[] GetStreamReaders()
         {
             using (var opd = new OpenFileDialog
@@ -425,6 +432,8 @@ namespace BibReader
             btFirst.Enabled = false;
             добавитьToolStripMenuItem.Enabled = true;
             UpdateUI(true);
+
+            nextCorpus = NextCorpus.Unique;
         }
 
         private void btUnique_Click(object sender, EventArgs e)
@@ -436,6 +445,8 @@ namespace BibReader
             добавитьToolStripMenuItem.Enabled = false;
             UpdateUI(true);
             //LoadLibItems();
+
+            nextCorpus = NextCorpus.Relevance;
         }
 
         private void btRelevance_Click(object sender, EventArgs e)
@@ -446,6 +457,8 @@ namespace BibReader
             btRelevance.Enabled = false;
             UpdateUI(true);
             //LoadLibItems();
+
+            nextCorpus = NextCorpus.First;
         }
 
         private void UpdateStatistic(bool removeFilters)
@@ -993,6 +1006,8 @@ namespace BibReader
             setReadOnlyTextBox(tbAuthors, false);
             setVisibleButton(btEditAuthors, false);
             setVisibleButton(btSaveAuthors, true);
+
+            btFirst.Enabled = btUnique.Enabled = btRelevance.Enabled = фильтрыToolStripMenuItem.Enabled = false;
         }
 
         private void btEditTitle_Click(object sender, EventArgs e)
@@ -1000,6 +1015,8 @@ namespace BibReader
             setReadOnlyTextBox(tbTitle, false);
             setVisibleButton(btEditTitle, false);
             setVisibleButton(btSaveTitle, true);
+
+            btFirst.Enabled = btUnique.Enabled = btRelevance.Enabled = фильтрыToolStripMenuItem.Enabled = false;
         }
 
         private void btEditAbstract_Click(object sender, EventArgs e)
@@ -1007,6 +1024,8 @@ namespace BibReader
             setReadOnlyTextBox(tbAbstract, false);
             setVisibleButton(btEditAbstract, false);
             setVisibleButton(btSaveAbstract, true);
+
+            btFirst.Enabled = btUnique.Enabled = btRelevance.Enabled = фильтрыToolStripMenuItem.Enabled = false;
         }
 
         private void btEditJournal_Click(object sender, EventArgs e)
@@ -1014,6 +1033,8 @@ namespace BibReader
             setReadOnlyTextBox(tbJournalName, false);
             setVisibleButton(btEditJournal, false);
             setVisibleButton(btSaveJournal, true);
+
+            btFirst.Enabled = btUnique.Enabled = btRelevance.Enabled = фильтрыToolStripMenuItem.Enabled = false;
         }
 
         private void btEditYear_Click(object sender, EventArgs e)
@@ -1021,6 +1042,8 @@ namespace BibReader
             setReadOnlyTextBox(tbYear, false);
             setVisibleButton(btEditYear, false);
             setVisibleButton(btSaveYear, true);
+
+            btFirst.Enabled = btUnique.Enabled = btRelevance.Enabled = фильтрыToolStripMenuItem.Enabled = false;
         }
 
         private void btEditVolume_Click(object sender, EventArgs e)
@@ -1028,6 +1051,8 @@ namespace BibReader
             setReadOnlyTextBox(tbVolume, false);
             setVisibleButton(btEditVolume, false);
             setVisibleButton(btSaveVolume, true);
+
+            btFirst.Enabled = btUnique.Enabled = btRelevance.Enabled = фильтрыToolStripMenuItem.Enabled = false;
         }
 
         private void btEditPublisher_Click(object sender, EventArgs e)
@@ -1035,6 +1060,8 @@ namespace BibReader
             setReadOnlyTextBox(tbPublisher, false);
             setVisibleButton(btEditPublisher, false);
             setVisibleButton(btSavePublisher, true);
+
+            btFirst.Enabled = btUnique.Enabled = btRelevance.Enabled = фильтрыToolStripMenuItem.Enabled = false;
         }
 
         private void btEditNumber_Click(object sender, EventArgs e)
@@ -1042,6 +1069,8 @@ namespace BibReader
             setReadOnlyTextBox(tbNumber, false);
             setVisibleButton(btEditNumber, false);
             setVisibleButton(btSaveNumber, true);
+
+            btFirst.Enabled = btUnique.Enabled = btRelevance.Enabled = фильтрыToolStripMenuItem.Enabled = false;
         }
 
         private void btEditPages_Click(object sender, EventArgs e)
@@ -1049,6 +1078,8 @@ namespace BibReader
             setReadOnlyTextBox(tbPages, false);
             setVisibleButton(btEditPages, false);
             setVisibleButton(btSavePages, true);
+
+            btFirst.Enabled = btUnique.Enabled = btRelevance.Enabled = фильтрыToolStripMenuItem.Enabled = false;
         }
 
         private void btEditDoi_Click(object sender, EventArgs e)
@@ -1056,6 +1087,8 @@ namespace BibReader
             setReadOnlyTextBox(tbDoi, false);
             setVisibleButton(btEditDoi, false);
             setVisibleButton(btSaveDoi, true);
+
+            btFirst.Enabled = btUnique.Enabled = btRelevance.Enabled = фильтрыToolStripMenuItem.Enabled = false;
         }
 
         private void btEditUrl_Click(object sender, EventArgs e)
@@ -1063,6 +1096,8 @@ namespace BibReader
             setReadOnlyTextBox(tbUrl, false);
             setVisibleButton(btEditUrl, false);
             setVisibleButton(btSaveUrl, true);
+
+            btFirst.Enabled = btUnique.Enabled = btRelevance.Enabled = фильтрыToolStripMenuItem.Enabled = false;
         }
 
         private void btEditAffiliation_Click(object sender, EventArgs e)
@@ -1070,6 +1105,8 @@ namespace BibReader
             setReadOnlyTextBox(tbAffiliation, false);
             setVisibleButton(btEditAffiliation, false);
             setVisibleButton(btSaveAffiliation, true);
+
+            btFirst.Enabled = btUnique.Enabled = btRelevance.Enabled = фильтрыToolStripMenuItem.Enabled = false;
         }
 
         private void btEditKeywords_Click(object sender, EventArgs e)
@@ -1077,6 +1114,8 @@ namespace BibReader
             setReadOnlyTextBox(tbKeywords, false);
             setVisibleButton(btEditKeywords, false);
             setVisibleButton(btSaveKeywords, true);
+
+            btFirst.Enabled = btUnique.Enabled = btRelevance.Enabled = фильтрыToolStripMenuItem.Enabled = false;
         }
 
         private void btEditSource_Click(object sender, EventArgs e)
@@ -1084,6 +1123,43 @@ namespace BibReader
             setReadOnlyTextBox(tbSourсe, false);
             setVisibleButton(btEditSource, false);
             setVisibleButton(btSaveSource, true);
+
+            btFirst.Enabled = btUnique.Enabled = btRelevance.Enabled = фильтрыToolStripMenuItem.Enabled = false;
+        }
+
+        private void EnableNextCorpus()
+        {
+            if (btSaveAbstract.Visible
+                || btSaveAffiliation.Visible
+                || btSaveArticleNumber.Visible
+                || btSaveAuthors.Visible
+                || btSaveDoi.Visible
+                || btSaveJournal.Visible
+                || btSaveKeywords.Visible
+                || btSaveNumber.Visible
+                || btSavePages.Visible
+                || btSavePublisher.Visible
+                || btSaveSource.Visible
+                || btSaveTitle.Visible
+                || btSaveUrl.Visible
+                || btSaveVolume.Visible
+                || btSaveYear.Visible)
+                return;
+
+            switch (nextCorpus)
+            {
+                case NextCorpus.First:
+                    btFirst.Enabled = true;
+                    break;
+                case NextCorpus.Unique:
+                    btUnique.Enabled = true;
+                    break;
+                case NextCorpus.Relevance:
+                    btRelevance.Enabled = true;
+                    break;
+            }
+
+            фильтрыToolStripMenuItem.Enabled = true;
         }
 
         private void btSaveAuthors_Click(object sender, EventArgs e)
@@ -1091,7 +1167,10 @@ namespace BibReader
             setReadOnlyTextBox(tbAuthors, true);
             setVisibleButton(btSaveAuthors, false);
             setVisibleButton(btEditAuthors, true);
+
             ((LibItem)lvLibItems.SelectedItems[0].Tag).Authors = tbAuthors.Text;
+            UpdateStatistic(false);
+            EnableNextCorpus();
         }
 
         private void btSaveTitle_Click(object sender, EventArgs e)
@@ -1100,6 +1179,8 @@ namespace BibReader
             setVisibleButton(btSaveTitle, false);
             setVisibleButton(btEditTitle, true);
             ((LibItem)lvLibItems.SelectedItems[0].Tag).Title = tbTitle.Text;
+
+            EnableNextCorpus();
         }
 
         private void btSaveAbstract_Click(object sender, EventArgs e)
@@ -1108,6 +1189,8 @@ namespace BibReader
             setVisibleButton(btSaveAbstract, false);
             setVisibleButton(btEditAbstract, true);
             ((LibItem)lvLibItems.SelectedItems[0].Tag).Abstract = tbAbstract.Text;
+
+            EnableNextCorpus();
         }
 
         private void btSaveJournal_Click(object sender, EventArgs e)
@@ -1115,7 +1198,10 @@ namespace BibReader
             setReadOnlyTextBox(tbJournalName, true);
             setVisibleButton(btSaveJournal, false);
             setVisibleButton(btEditJournal, true);
-            ((LibItem)lvLibItems.SelectedItems[0].Tag).Journal = tbJournalName.Text;
+            ((LibItem)lvLibItems.SelectedItems[0].Tag).SetJournal(tbJournalName.Text);
+            UpdateStatistic(false);
+
+            EnableNextCorpus();
         }
 
         private void btSaveYear_Click(object sender, EventArgs e)
@@ -1124,6 +1210,9 @@ namespace BibReader
             setVisibleButton(btSaveYear, false);
             setVisibleButton(btEditYear, true);
             ((LibItem)lvLibItems.SelectedItems[0].Tag).Year = tbYear.Text;
+            UpdateStatistic(false);
+
+            EnableNextCorpus();
         }
 
         private void btSaveVolume_Click(object sender, EventArgs e)
@@ -1132,6 +1221,8 @@ namespace BibReader
             setVisibleButton(btSaveVolume, false);
             setVisibleButton(btEditVolume, true);
             ((LibItem)lvLibItems.SelectedItems[0].Tag).Volume = tbVolume.Text;
+
+            EnableNextCorpus();
         }
 
         private void btSavePublisher_Click(object sender, EventArgs e)
@@ -1140,6 +1231,8 @@ namespace BibReader
             setVisibleButton(btSavePublisher, false);
             setVisibleButton(btEditPublisher, true);
             ((LibItem)lvLibItems.SelectedItems[0].Tag).Publisher = tbPublisher.Text;
+
+            EnableNextCorpus();
         }
 
         private void btSaveNumber_Click(object sender, EventArgs e)
@@ -1148,6 +1241,8 @@ namespace BibReader
             setVisibleButton(btSaveNumber, false);
             setVisibleButton(btEditNumber, true);
             ((LibItem)lvLibItems.SelectedItems[0].Tag).Number = tbNumber.Text;
+
+            EnableNextCorpus();
         }
 
         private void btSavePages_Click(object sender, EventArgs e)
@@ -1156,6 +1251,8 @@ namespace BibReader
             setVisibleButton(btSavePages, false);
             setVisibleButton(btEditPages, true);
             ((LibItem)lvLibItems.SelectedItems[0].Tag).Pages = tbPages.Text;
+
+            EnableNextCorpus();
         }
 
         private void btSaveDoi_Click(object sender, EventArgs e)
@@ -1164,6 +1261,8 @@ namespace BibReader
             setVisibleButton(btSaveDoi, false);
             setVisibleButton(btEditDoi, true);
             ((LibItem)lvLibItems.SelectedItems[0].Tag).Doi = tbDoi.Text;
+
+            EnableNextCorpus();
         }
 
         private void btSaveUrl_Click(object sender, EventArgs e)
@@ -1172,14 +1271,20 @@ namespace BibReader
             setVisibleButton(btSaveUrl, false);
             setVisibleButton(btEditUrl, true);
             ((LibItem)lvLibItems.SelectedItems[0].Tag).Url = tbUrl.Text;
+
+            EnableNextCorpus();
         }
 
         private void btSaveAffiliation_Click(object sender, EventArgs e)
         {
             setReadOnlyTextBox(tbAffiliation, true);
             setVisibleButton(btSaveAffiliation, false);
-            setVisibleButton(btEditKeywords, true);
+            setVisibleButton(btEditAffiliation, true);
             ((LibItem)lvLibItems.SelectedItems[0].Tag).Affiliation = tbAffiliation.Text;
+            ((LibItem)lvLibItems.SelectedItems[0].Tag).FormGeography();
+            UpdateStatistic(false);
+
+            EnableNextCorpus();
         }
 
         private void btSaveKeywords_Click(object sender, EventArgs e)
@@ -1188,6 +1293,8 @@ namespace BibReader
             setVisibleButton(btSaveKeywords, false);
             setVisibleButton(btEditKeywords, true);
             ((LibItem)lvLibItems.SelectedItems[0].Tag).Keywords = tbKeywords.Text;
+
+            EnableNextCorpus();
         }
 
         private void btSaveSource_Click(object sender, EventArgs e)
@@ -1196,6 +1303,9 @@ namespace BibReader
             setVisibleButton(btSaveSource, false);
             setVisibleButton(btEditSource, true);
             ((LibItem)lvLibItems.SelectedItems[0].Tag).Source = tbSourсe.Text;
+            UpdateStatistic(false);
+
+            EnableNextCorpus();
         }
 
         private void btSaveArticleNumber_Click(object sender, EventArgs e)
@@ -1204,6 +1314,8 @@ namespace BibReader
             setVisibleButton(btSaveArticleNumber, false);
             setVisibleButton(btEditArticleNumber, true);
             ((LibItem)lvLibItems.SelectedItems[0].Tag).ArticleNumber = tbArticleNumber.Text;
+
+            EnableNextCorpus();
         }
 
         private void btEditArticleNumber_Click(object sender, EventArgs e)
@@ -1211,6 +1323,8 @@ namespace BibReader
             setReadOnlyTextBox(tbArticleNumber, false);
             setVisibleButton(btEditArticleNumber, false);
             setVisibleButton(btSaveArticleNumber, true);
+
+            btFirst.Enabled = btUnique.Enabled = btRelevance.Enabled = фильтрыToolStripMenuItem.Enabled = false;
         }
 
         private void tbFind_Enter(object sender, EventArgs e)
@@ -1290,13 +1404,14 @@ namespace BibReader
             if (styles is null)
             {
                 btPrintBib.Enabled = false;
-                MessageBox.Show("Не удалось получить список стилей.\nПроверьте подключение к сети или повторите попытку позже", "Стили");
+                MessageBox.Show($"Не удалось получить список стилей.\nПроверьте подключение к сети или повторите попытку позже", "Стили");
             }
             else
             {
                 MessageBox.Show("Стили получены!", "Стили");
                 btPrintBib.Enabled = true;
-                cbBibStyles.DataSource = styles;
+                foreach (string style in styles)
+                    cbBibStyles.Items.Add(style);
                 cbBibStyles.SelectedIndex = 0;
             }
         }

@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="stylesLink" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://localhost:8000/styles</Value>
+      <Value Profile="(Default)">http://movs.psu.ru:8001/styles</Value>
     </Setting>
     <Setting Name="citationsLink" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://localhost:8000/citations?style=[styleName]</Value>
+      <Value Profile="(Default)">http://movs.psu.ru:8001/citations?style=</Value>
     </Setting>
   </Settings>
 </SettingsFile>

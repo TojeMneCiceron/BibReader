@@ -73,7 +73,7 @@ namespace BibReader.BibReference.TypesOfSourse
             City = libItem.Address;
             Number = number;
             Volume = volume;
-            ConferenceName = libItem.Journal;
+            ConferenceName = libItem.JournalAbbreviation;
             Doi = libItem.Doi;
             Source = libItem.Source;
         }

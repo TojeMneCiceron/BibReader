@@ -61,6 +61,10 @@ namespace BibReader.BibReference
                 case "ACM DL":
                     LastNameIsFirst(ref Authors);
                     break;
+
+                case "Springer Link":
+                    LastNameIsLast(ref Authors);
+                    break;
             }
 
             return Authors;
@@ -80,9 +84,12 @@ namespace BibReader.BibReference
                 while (Authors[i].Contains(','))
                     Authors[i] = Authors[i].Remove(Authors[i].IndexOf(','), 1);
                 var indexOfStartLastName = Authors[i].LastIndexOf(' ');
-                var FirstName = Authors[i].Substring(0, indexOfStartLastName);
-                var LastName = Authors[i].Substring(indexOfStartLastName + 1);
-                Authors[i] = string.Join(" ", LastName, FirstName);
+                if (indexOfStartLastName > 0)
+                {
+                    var FirstName = Authors[i].Substring(0, indexOfStartLastName);
+                    var LastName = Authors[i].Substring(indexOfStartLastName + 1);
+                    Authors[i] = string.Join(" ", LastName, FirstName);
+                }
             }
         }
 
@@ -221,7 +228,7 @@ namespace BibReader.BibReference
                             ?
                                 i == 0
                                 //i == 2
-                                ? author + " et. al."
+                                ? author + " [et. al.]"
                                 : author + ", "
                             : string.Empty
                     )

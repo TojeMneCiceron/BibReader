@@ -50,7 +50,7 @@ namespace BibReader.BibReference
         {
             string url = BibRefClientConfig.Default.citationsLink;
 
-            var request = WebRequest.Create(url.Replace("[styleName]", style));
+            var request = WebRequest.Create(url + style);
             request.Method = "POST";
             request.ContentType = "application/json";
 

@@ -71,6 +71,7 @@ namespace BibReader.Publications
                 {"articleno", "articleNumber"},
                 {"art_number", "articleNumber"},
 
+                {"articleNumber", "articleNumber"},
                 {"referencework", "conference"}
             };
 

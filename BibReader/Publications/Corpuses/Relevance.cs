@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BibReader.Corpuses
 {
-    class Relevance
+    public class Relevance
     {
         List<LibItem> RelevanceItems = new List<LibItem>(); 
 
@@ -35,6 +35,8 @@ namespace BibReader.Corpuses
 
         private static bool IsRelevancePages(string pages)
         {
+            pages = pages.Replace("<<", "").Replace(">>", "");
+
             if (pages == "" || pages == string.Empty)
                 return false;
 

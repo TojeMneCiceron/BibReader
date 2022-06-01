@@ -25,7 +25,7 @@ namespace BibReader.BibReference {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8000/styles")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://movs.psu.ru:8001/styles")]
         public string stylesLink {
             get {
                 return ((string)(this["stylesLink"]));
@@ -37,7 +37,7 @@ namespace BibReader.BibReference {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8000/citations?style=[styleName]")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://movs.psu.ru:8001/citations?style=")]
         public string citationsLink {
             get {
                 return ((string)(this["citationsLink"]));

@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace BibReader.Readers.ELibraryScraper
 {
-    class Scraper
+    public class Scraper
     {
         public void readFile(string htmlFile, string bibFile)
         {

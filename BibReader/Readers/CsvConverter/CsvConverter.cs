@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BibReader.Readers
 {
-    class CsvConverter
+    public class CsvConverter
     {
         public CsvConverter() { }
 

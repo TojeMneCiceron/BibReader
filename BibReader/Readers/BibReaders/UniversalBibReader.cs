@@ -159,7 +159,7 @@ namespace BibReader.Readers
             Regex r = new Regex(@"{\w}");
             Regex rs = new Regex(@"\s+");
             //remove extra spaces and \
-            string res = rs.Replace(str, " ").Replace("{\"}", "\"").Replace(@"\", "").Replace("<i>", "").Replace("</i>", "").Replace("{[}", "[").Replace("]", "]");
+            string res = rs.Replace(str, " ").Replace("{\"}", "\"").Replace("{''}", "\"").Replace("``", "\"").Replace(@"\", "").Replace("<i>", "").Replace("</i>", "").Replace("{[}", "[").Replace("]", "]");
 
             var matches = r.Matches(res);
 
@@ -218,15 +218,21 @@ namespace BibReader.Readers
             return (double)caps / s.Length > 0.6;
         }
 
+        private string RemoveCaps(string s)
+        {
+            s = s.ToLower();
+            return s[0].ToString().ToUpper() + s.Substring(1);
+        }
+
         private string FixJournal(string j)
         {
-            Regex regex = new Regex(@"\([A-Za-z0-9 ]+\)");
+            Regex regex = new Regex(@"\([A-Za-z0-9\- ]+\)");
             string abb = regex.Match(j).Value;
             string res = j.ToLower();
             if (abb != "")
                 res = res.Replace(abb.ToLower(), abb);
 
-            return res;
+            return res[0].ToString().ToUpper() + res.Substring(1);
         }
         private List<LibItem> GetLibItems(StreamReader reader, List<Source> defaultSources, List<Source> customSources)
         {
@@ -408,12 +414,21 @@ namespace BibReader.Readers
 
                 //deleting caps
                 if (Caps(newItem.Abstract))
-                    newItem.Abstract = newItem.Abstract.ToLower();
+                {
+                    newItem.Abstract = RemoveCaps(newItem.Abstract);
+
+                }
                 if (Caps(newItem.Title))
-                    newItem.Title = newItem.Title.ToLower();
+                {
+                    newItem.Title = RemoveCaps(newItem.Title);
+                }
                 if (Caps(newItem.Journal))
                 {
                     newItem.Journal = FixJournal(newItem.Journal);
+                }
+                if (Caps(newItem.Publisher))
+                {
+                    newItem.Publisher = RemoveCaps(newItem.Publisher);
                 }
 
                 Items.Add(newItem);

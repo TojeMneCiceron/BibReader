@@ -68,7 +68,7 @@ namespace BibReader.BibReference.TypesOfSourse
 
             Authors = AuthorsParser.ParseAuthors(libItem.Authors, libItem.Source);
             Title = libItem.Title;
-            JournalName = libItem.Journal;
+            JournalName = libItem.JournalAbbreviation;
             Year = year;
             Pages = libItem.Source == "Springer Link" ? "XXX-XXX" : libItem.Pages;
             Number = number;
