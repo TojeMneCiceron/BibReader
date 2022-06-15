@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net;
 using System.IO;
-using System.Windows.Forms;
-using Json.Net;
 using Newtonsoft.Json.Linq;
 using BibReader.Publications;
 
@@ -14,14 +10,12 @@ namespace BibReader.BibReference
 {
     class BibRefClient
     {
-        //static string url = $"http://{BibRefClientConfig.Default.stylesLink}:{BibRefClientConfig.Default.citationsLink}";
-
+        //формирование запроса для получения списка стилей
         public static List<string> GetStyles()
         {
-            //List<string> styles = new List<string>();
             string url = BibRefClientConfig.Default.stylesLink;
 
-            var request = WebRequest.Create(url);
+            var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
 
             List<string> styles;
@@ -40,17 +34,16 @@ namespace BibReader.BibReference
             {
                 styles = null;
             }
-            //MessageBox.Show(a.Count.ToString());
-
 
             return styles;
         }
 
+        //формирование запроса для получения библиографических описаний
         public static List<string> GetCitations(List<LibItem> items, string style)
         {
             string url = BibRefClientConfig.Default.citationsLink;
 
-            var request = WebRequest.Create(url + style);
+            var request = (HttpWebRequest)WebRequest.Create(url + style);
             request.Method = "POST";
             request.ContentType = "application/json";
 
@@ -76,19 +69,13 @@ namespace BibReader.BibReference
                 var data = reader.ReadToEnd();
 
                 var o = JObject.Parse(data)["citations"];
-                //MessageBox.Show(o.ToString());
 
                 citations = o.ToString().Split('\n').ToList();
-
-                //foreach (var s in citations)
-                //    MessageBox.Show(s);
             }
             catch (Exception e)
             {
                 citations = null;
             }
-            //MessageBox.Show(a.Count.ToString());
-
 
             return citations;
         }

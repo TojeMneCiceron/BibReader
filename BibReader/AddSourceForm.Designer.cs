@@ -91,11 +91,12 @@ namespace BibReader
             // btAddSymbol
             // 
             this.btAddSymbol.Enabled = false;
+            this.btAddSymbol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btAddSymbol.Location = new System.Drawing.Point(281, 94);
             this.btAddSymbol.Name = "btAddSymbol";
             this.btAddSymbol.Size = new System.Drawing.Size(31, 23);
             this.btAddSymbol.TabIndex = 5;
-            this.btAddSymbol.Text = "➕";
+            this.btAddSymbol.Text = "+";
             this.tt.SetToolTip(this.btAddSymbol, "Добавить символ");
             this.btAddSymbol.UseVisualStyleBackColor = true;
             this.btAddSymbol.Visible = false;
@@ -108,7 +109,7 @@ namespace BibReader
             this.btDeleteLastSymbol.Name = "btDeleteLastSymbol";
             this.btDeleteLastSymbol.Size = new System.Drawing.Size(31, 23);
             this.btDeleteLastSymbol.TabIndex = 6;
-            this.btDeleteLastSymbol.Text = "➖";
+            this.btDeleteLastSymbol.Text = "—";
             this.tt.SetToolTip(this.btDeleteLastSymbol, "Удалить последний символ");
             this.btDeleteLastSymbol.UseVisualStyleBackColor = true;
             this.btDeleteLastSymbol.Visible = false;

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace BibReader.Finder
 {
-    class Finder
+    public class Finder
     {
         int CurrentIndex = -1;
 

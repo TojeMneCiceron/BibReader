@@ -1,3 +1,0 @@
-file	count	read	unique	relev	bibref	class	stattables	statdiagrams	
-C:\Users\ciceron\Desktop\21-11-2021\IEEE Document Title = teacher training+mooc (2).txt	2	0,004	0,000	0,000	0,012	0,000	0,000	0,000
-C:\Users\ciceron\Desktop\21-11-2021\111.bib	2	0,002	0,000	0,000	0,012	0,000	0,000	0,000

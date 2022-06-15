@@ -21,6 +21,7 @@ namespace BibReader.BibReference.TypesOfSourse
         DateTime Date;
         int Volume;
         int Year;
+        string DOI;
         string Source;
 
         Font f = new Font(SystemFonts.DefaultFont, FontStyle.Italic);
@@ -50,7 +51,7 @@ namespace BibReader.BibReference.TypesOfSourse
         const string In = "in ";
         const string IN = "In";
 
-        public Book(string[] authors, string title, string name, string city, string publisher, int year, int volume, string pages, string link, DateTime date, string source)
+        public Book(string[] authors, string title, string name, string city, string publisher, int year, int volume, string pages, string link, DateTime date, string source, string doi)
         {
             Authors = authors.ToArray();
             Title = title;
@@ -63,6 +64,7 @@ namespace BibReader.BibReference.TypesOfSourse
             Link = link;
             Date = date;
             Source = source;
+            DOI = doi;
         }
 
         public Book(LibItem libItem)
@@ -72,15 +74,16 @@ namespace BibReader.BibReference.TypesOfSourse
 
             Authors = AuthorsParser.ParseAuthors(libItem.Authors, libItem.Source);
             Title = libItem.Title;
-            Name = libItem.JournalAbbreviation;
+            Name = libItem.Journal;
             City = string.Empty;
             Publisher = libItem.Publisher;
             Year = year;
             Pages = libItem.Source == "Springer Link" ? "XXX-XXX" : libItem.Pages;
             Volume = volume;
-            Link = string.Empty;
+            Link = libItem.Url;
             Date = DateTime.Parse(DateTime.Now.ToShortDateString());
             Source = libItem.Source;
+            DOI = libItem.Doi;
         }
 
         public void MakeGOST(RichTextBox rtb)
@@ -119,10 +122,10 @@ namespace BibReader.BibReference.TypesOfSourse
             rtb.Select(rtb.TextLength, 0);
             rtb.SelectedText = AuthorsParser.MakeAuthorsForHarvard(Authors);
             rtb.SelectedText = Space;
-            rtb.SelectedText = Lparenthesis + Year + Rparenthesis + PointSpace;
-            rtb.SelectedText = Title + PointSpace;
+            rtb.SelectedText = Lparenthesis + Year + Rparenthesis + Space;
+            rtb.SelectedText = "‘" + Title + "’" + CommaSpace + In + Space;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = f;
-            rtb.SelectedText = IN + DoublePointSpace + Name + PointSpace;
+            rtb.SelectedText = Name + PointSpace;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = SystemFonts.DefaultFont;
             //if (Volume > 0)
             //    rtb.SelectedText += Volume + Point; 
@@ -155,8 +158,13 @@ namespace BibReader.BibReference.TypesOfSourse
             if (City != string.Empty)
                 rtb.SelectedText = City + DoublePoint;
             rtb.SelectedText = Publisher + Point;
-            if (Link != "")
-                rtb.SelectedText = Space + Retrieved + Date.ToString("dd MMMM yyyy") + CommaSpace + From + Link;
+            //if (Link != "")
+            //    rtb.SelectedText = Space + Retrieved + Date.ToString("dd MMMM yyyy") + CommaSpace + From + Link;
+            if (DOI != "")
+                rtb.SelectedText = Space + DOI;
+            else if (Link != "")
+                rtb.SelectedText = Space + Link;
+
             rtb.SelectedText = "\n\n";
         }
 
@@ -164,14 +172,14 @@ namespace BibReader.BibReference.TypesOfSourse
         {
             rtb.Select(rtb.TextLength, 0);
             rtb.SelectedText = AuthorsParser.MakeAuthorsForIEEE(Authors) + CommaSpace;
-            rtb.SelectedText = "“" + Title + "”" + CommaSpace + In;
+            rtb.SelectedText = "“" + Title + ",”" + Space + In;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = f;
-            rtb.SelectedText = Name + CommaSpace;
+            rtb.SelectedText = Name + PointSpace;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = SystemFonts.DefaultFont;
-            if (Volume != 0)
-                rtb.SelectedText = Vol + Volume + CommaSpace;
+            //if (Volume != 0)
+            //    rtb.SelectedText = Vol + Volume + CommaSpace;
             if (City != string.Empty)
-                rtb.SelectedText = City + CommaSpace;
+                rtb.SelectedText = City + DoublePointSpace;
             rtb.SelectedText = Publisher + CommaSpace + Year;
            
             if (Pages != "")
@@ -182,8 +190,8 @@ namespace BibReader.BibReference.TypesOfSourse
             }
             else
                 rtb.SelectedText = Point;
-            if (Link != "")
-                rtb.SelectedText = Space + Avaliable + Link + Point + Space + Access + Date.ToString("MMM. dd, yyyy.");
+            //if (Link != "")
+            //    rtb.SelectedText = Space + Avaliable + Link + Point + Space + Access + Date.ToString("MMM. dd, yyyy.");
             rtb.SelectedText = "\n\n";
         }
     }

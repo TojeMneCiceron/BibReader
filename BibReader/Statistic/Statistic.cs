@@ -203,5 +203,15 @@ namespace BibReader.Statistic
             else
                 Types.Add(libItem.Type, 1);
         }
+
+        //public static void DeleteGeography(List<string> geo)
+        //{
+        //    foreach(string key in geo)
+        //    {
+        //        Geography[key]--;
+        //    }
+
+        //    Geography = Geography.Where(x => x.Value > 0).ToDictionary(x => x.Key, x => x.Value);
+        //}
     }
 }

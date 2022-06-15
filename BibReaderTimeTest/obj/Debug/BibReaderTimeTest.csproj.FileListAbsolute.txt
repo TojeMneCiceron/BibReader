@@ -2,8 +2,6 @@ C:\Users\ciceron\Desktop\BibReader\BibReaderTimeTest\bin\Debug\BibReaderTimeTest
 C:\Users\ciceron\Desktop\BibReader\BibReaderTimeTest\bin\Debug\BibReaderTimeTest.exe
 C:\Users\ciceron\Desktop\BibReader\BibReaderTimeTest\bin\Debug\BibReaderTimeTest.pdb
 C:\Users\ciceron\Desktop\BibReader\BibReaderTimeTest\bin\Debug\BibReader.exe
-C:\Users\ciceron\Desktop\BibReader\BibReaderTimeTest\bin\Debug\Sparc.TagCloud.dll
-C:\Users\ciceron\Desktop\BibReader\BibReaderTimeTest\bin\Debug\WordCloud.dll
 C:\Users\ciceron\Desktop\BibReader\BibReaderTimeTest\bin\Debug\IKVM.OpenJDK.Core.dll
 C:\Users\ciceron\Desktop\BibReader\BibReaderTimeTest\bin\Debug\stanford-corenlp-3.9.2.dll
 C:\Users\ciceron\Desktop\BibReader\BibReaderTimeTest\bin\Debug\HtmlAgilityPack.dll

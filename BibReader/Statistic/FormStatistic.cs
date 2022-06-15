@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace BibReader.Statistic
 {
-    class FormStatistic
+    public class FormStatistic
     {
         public static void LoadSourseStatistic(ListView lvSourceStatistic)
         {

@@ -299,6 +299,12 @@ namespace BibReader.Readers
 
                         if (IsEndOfTag(newLine) || IsEvenBracketCount(tagString))
                         {
+                            if (tagString.Contains("number"))
+                            {
+                                int a = 1;
+
+                            }
+
                             if (newLine[newLine.Length - 1] == '}')
                                 tagString += ",";
 
@@ -342,7 +348,7 @@ namespace BibReader.Readers
                                 isPagesTagFound = true;
                                 sourceIdentifier.Pages = value;
                                 //if (value.Length >= 5 && !value.Contains('-'))
-                                if (value.Any(char.IsLetter))
+                                if (!value.Any(char.IsDigit))
                                     value = defaultPagesNumber;
 
                             }

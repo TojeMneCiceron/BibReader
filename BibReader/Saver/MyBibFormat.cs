@@ -25,6 +25,9 @@ namespace BibReader.Saver
                         foreach (var item in libItems)
                         {
                             writer.WriteLine(item.BibTexForSave());
+
+                            //writer.WriteLine(item.BibTexForRef());
+
                             //writer.WriteLine("@" + item.Type + "{");
                             //writer.WriteLine("author={" + item.Authors + "},");
                             //writer.WriteLine("abstract={" + item.Abstract + "},");

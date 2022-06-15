@@ -20,6 +20,7 @@ using BibReader.Analysis;
 using BibReader.BibReference;
 using BibReader.Readers.BibReaders;
 using System.Xml.Serialization;
+using System.Diagnostics;
 
 namespace BibReader
 {
@@ -366,6 +367,7 @@ namespace BibReader
                 log.Write($"{ (DateTime.Now - time).TotalSeconds.ToString() } sec.");
                 log.Write("____________________");
 
+                toolStripStatusLabel1.Text = "Last opened file name: " + lastOpenedFileName;
                 labelFindedItemsCount.Text = string.Empty;
                 btFirst.Enabled = false;
                 btUnique.Enabled = true;
@@ -643,8 +645,16 @@ namespace BibReader
 
         private void btSaveBibRef_Click(object sender, EventArgs e) => DocSaver.Save(rtbBib);
 
-        private void корпусДокументовToolStripMenuItem_Click(object sender, EventArgs e) => MyBibFormat.Save(libItems);
+        private void корпусДокументовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var items = new List<LibItem>();
+            foreach (ListViewItem lvi in lvLibItems.Items)
+                items.Add((LibItem)lvi.Tag);
 
+            MyBibFormat.Save(items);
+
+            MessageBox.Show("Корпус сохранен!");
+        }
         private void библОписанияToolStripMenuItem_Click(object sender, EventArgs e) => DocSaver.Save(rtbBib);
 
         private void статистикуToolStripMenuItem_Click(object sender, EventArgs e) => ExcelSaver.Save(GetStatisticListViews());
@@ -703,6 +713,7 @@ namespace BibReader
                 case 4: return chGeography;
                 case 5: return chConference;
                 //+AuthorsCount when charts are fixed
+                case 6: return chAuthorsCount;
                 default: return null;
             }
         }
@@ -1169,6 +1180,9 @@ namespace BibReader
             setVisibleButton(btEditAuthors, true);
 
             ((LibItem)lvLibItems.SelectedItems[0].Tag).Authors = tbAuthors.Text;
+
+            ((LibItem)lvLibItems.SelectedItems[0].Tag).FormAuthorsList();
+
             UpdateStatistic(false);
             EnableNextCorpus();
         }
@@ -1281,6 +1295,9 @@ namespace BibReader
             setVisibleButton(btSaveAffiliation, false);
             setVisibleButton(btEditAffiliation, true);
             ((LibItem)lvLibItems.SelectedItems[0].Tag).Affiliation = tbAffiliation.Text;
+
+            //Stat.DeleteGeography(((LibItem)lvLibItems.SelectedItems[0].Tag).Geography);
+
             ((LibItem)lvLibItems.SelectedItems[0].Tag).FormGeography();
             UpdateStatistic(false);
 
@@ -1367,7 +1384,16 @@ namespace BibReader
             if (!chbServer.Checked)
             {
                 rtbBib.Text = string.Empty;
+                var time = DateTime.Now;
+                //log.Write($"{ time.ToString() }");
+                //log.Write($"> Make bib ref for libItems count = {lvLibItems.Items.Count} ");
+                //log.Write($"> Style: {cbBibStyles.Text} ");                
                 MakeBibRef();
+                log.Write($"{cbBibStyles.Text}\t{lvLibItems.Items.Count}\t{ (DateTime.Now - time).TotalSeconds.ToString() }");
+                //log.Write("____________________");
+
+                MessageBox.Show("Готово!", "Библ. описания");
+
                 lbCurrentStyle.Visible = true;
                 lbCurrentStyle.Text = "Текущий стиль: " + cbBibStyles.Text;
                 return;
@@ -1383,11 +1409,11 @@ namespace BibReader
             var citations = BibRefClient.GetCitations(items, cbBibStyles.Text);
             if (citations is null)
             {
-                MessageBox.Show("Не удалось получить биб. ссылки.\n\n-Обновите список стилей\n-Проверьте подключение к сети или повторите попытку позже", "Биб. ссылки");
+                MessageBox.Show("Не удалось получить библ. описания.\n\n-Обновите список стилей\n-Проверьте подключение к сети или повторите попытку позже", "Библ. описания");
             }
             else
             {
-                MessageBox.Show("Биб. ссылки получены!", "Биб. ссылки");
+                MessageBox.Show("Библ. описания получены!", "Библ. описания");
                 lbCurrentStyle.Text = "Текущий стиль: " + cbBibStyles.Text;
                 lbCurrentStyle.Visible = true;
                 rtbBib.Clear();
@@ -1410,6 +1436,7 @@ namespace BibReader
             {
                 MessageBox.Show("Стили получены!", "Стили");
                 btPrintBib.Enabled = true;
+                cbBibStyles.Items.Clear();
                 foreach (string style in styles)
                     cbBibStyles.Items.Add(style);
                 cbBibStyles.SelectedIndex = 0;
@@ -1420,6 +1447,8 @@ namespace BibReader
         {
             btGetStyles.Enabled = chbServer.Checked;
             btPrintBib.Enabled = !chbServer.Checked;
+
+            //var i = libItems.Where(x => x.BibTexString.Contains("Impact")).ToList();
 
             if (!chbServer.Checked)
             {

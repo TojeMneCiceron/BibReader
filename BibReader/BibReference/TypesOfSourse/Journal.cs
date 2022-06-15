@@ -14,11 +14,13 @@ namespace BibReader.BibReference.TypesOfSourse
         string Title;
         string[] Authors;
         string JournalName;
+        string JournalNameAbbreviated;
         string Pages;
         int Year;
         int Number;
         int Volume;
         string Link;
+        string DOI;
         DateTime Date;
         string Source;
 
@@ -46,7 +48,7 @@ namespace BibReader.BibReference.TypesOfSourse
         const string EtAl = " et. al. ";
         const string Slash = "/";
 
-        public Journal(string[] authors, string title, string journalName, string pages, int year, int number, int vol, string link, DateTime date, string source)
+        public Journal(string[] authors, string title, string journalName, string pages, int year, int number, int vol, string link, DateTime date, string source, string doi)
         {
             Authors = authors.ToArray();
             Title = title;
@@ -58,6 +60,7 @@ namespace BibReader.BibReference.TypesOfSourse
             Link = link;
             Date = date;
             Source = source;
+            DOI = doi;
         }
 
         public Journal(LibItem libItem)
@@ -68,13 +71,15 @@ namespace BibReader.BibReference.TypesOfSourse
 
             Authors = AuthorsParser.ParseAuthors(libItem.Authors, libItem.Source);
             Title = libItem.Title;
-            JournalName = libItem.JournalAbbreviation;
+            JournalName = libItem.Journal;
+            JournalNameAbbreviated = libItem.JournalAbbreviation;
             Year = year;
             Pages = libItem.Source == "Springer Link" ? "XXX-XXX" : libItem.Pages;
             Number = number;
             Volume = volume;
             Link = string.Empty;
             Date = DateTime.Parse(DateTime.Now.ToShortDateString());
+            DOI = libItem.Doi;
         }
 
         public void MakeGOST(RichTextBox rtb)
@@ -110,7 +115,7 @@ namespace BibReader.BibReference.TypesOfSourse
             rtb.Select(rtb.TextLength, 0);
             rtb.SelectedText = AuthorsParser.MakeAuthorsForHarvard(Authors);
             rtb.SelectedText = Space;
-            rtb.SelectedText = Lparenthesis + Year + Rparenthesis + PointSpace;
+            rtb.SelectedText = Lparenthesis + Year + Rparenthesis + Space;
             rtb.SelectedText = Title + PointSpace;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = f;
             rtb.SelectedText = JournalName + CommaSpace;
@@ -120,7 +125,7 @@ namespace BibReader.BibReference.TypesOfSourse
                 ? Volume + Lparenthesis + Number + Rparenthesis + CommaSpace
                 : (Volume != 0 && Number == 0)
                     ? rtb.SelectedText = Volume + CommaSpace
-                    : rtb.SelectedText = Number + CommaSpace;
+                    : Number != 0 ? rtb.SelectedText = Number + CommaSpace : "";
             rtb.SelectedText = Int32.TryParse(Pages, out int a) ? Page : PPage;
             rtb.SelectedText = Pages + Point;
             if (Link != "")
@@ -143,30 +148,33 @@ namespace BibReader.BibReference.TypesOfSourse
                 ? Volume + Lparenthesis + Number + Rparenthesis + CommaSpace
                 : (Volume != 0 && Number == 0)
                     ? rtb.SelectedText = Volume + CommaSpace
-                    : rtb.SelectedText = Number + CommaSpace;
+                    : Number != 0 ? rtb.SelectedText = Number + CommaSpace : "";
             rtb.SelectedText = Pages + Point;
-            if (Link != "")
-                rtb.SelectedText = Space + Retrieved + Date.ToString("dd MMMM yyyy") + CommaSpace + From + Link;
+            //if (Link != "")
+            //    rtb.SelectedText = Space + Retrieved + Date.ToString("dd MMMM yyyy") + CommaSpace + From + Link;
+
+            if (DOI != "")
+                rtb.SelectedText = Space + DOI;
             rtb.SelectedText = "\n\n";
         }
 
         public void MakeIEEE(RichTextBox rtb)
         {
             rtb.Select(rtb.TextLength, 0);
-            rtb.SelectedText = AuthorsParser.MakeAuthorsForIEEE(Authors) + PointSpace;
-            rtb.SelectedText = Lparenthesis + Year + Rparenthesis + PointSpace;
-            rtb.SelectedText = Title + CommaSpace;
+            rtb.SelectedText = AuthorsParser.MakeAuthorsForIEEE(Authors) + CommaSpace;
+            //rtb.SelectedText = Lparenthesis + Year + Rparenthesis + PointSpace;
+            rtb.SelectedText = "“" + Title + ",”" + Space;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = f;
-            rtb.SelectedText = JournalName + CommaSpace;
+            rtb.SelectedText = JournalNameAbbreviated + CommaSpace;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = SystemFonts.DefaultFont;
             if (Volume != 0)
                 rtb.SelectedText = Vol + Volume + CommaSpace;
             if (Number != 0)
                 rtb.SelectedText = Num + Number + CommaSpace;
             rtb.SelectedText = Int32.TryParse(Pages, out int a) ? Page : PPage;
-            rtb.SelectedText = Pages + Point;
-            if (Link != "")
-                rtb.SelectedText = Space + Avaliable + Link + Point + Space + Access + Date.ToString("MMM. dd, yyyy.");
+            rtb.SelectedText = Pages + CommaSpace + Year + Point;
+            //if (Link != "")
+            //    rtb.SelectedText = Space + Avaliable + Link + Point + Space + Access + Date.ToString("MMM. dd, yyyy.");
             rtb.SelectedText = "\n\n";
         }
     }

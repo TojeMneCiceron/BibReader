@@ -51,7 +51,7 @@ namespace BibReader.BibReference
                     break;
 
                 case "IEEE":
-                    LastNameIsLast(ref Authors);
+                    LastNameIsFirst(ref Authors);
                     break;
 
                 case "Web of Science":
@@ -118,7 +118,7 @@ namespace BibReader.BibReference
                         author +=
                             i != authors.Length - 1 && i != authors.Length - 2
                             ? ", "
-                            : i != authors.Length - 1 ? " & " : ""
+                            : i != authors.Length - 1 ? ", & " : ""
                         :
                         author =
                             i <= 6

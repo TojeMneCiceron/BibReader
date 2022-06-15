@@ -12,6 +12,7 @@ namespace BibReader.Publications
     public class LibItem
     {
         public string Authors { get; set; }
+        List<Author> AuthorsList { get; set; } = new List<Author>();
         public string Doi {get; set; }
         public string Year {get; set; }
         public string Title { get; set; }
@@ -59,6 +60,7 @@ namespace BibReader.Publications
         public LibItem(LibItem item)
         {
             Authors = item.Authors;
+            AuthorsList = item.AuthorsList;
             Doi = item.Doi;
             Year = item.Year;
             Title = item.Title;
@@ -84,6 +86,7 @@ namespace BibReader.Publications
             string source, string number, string originalTitle, string type, string address, string articleNumber, string journalAbb)
         {
             Authors = authors;
+            FormAuthorsList();
             Doi = doi;
             Year = year;
             Title = title;
@@ -108,6 +111,7 @@ namespace BibReader.Publications
         public LibItem(Dictionary<string, string> dict)
         {
             Authors = dict["authors"];
+            FormAuthorsList();
             Doi = dict["doi"];
             Year = dict["year"];
             Title = dict["title"];
@@ -166,14 +170,18 @@ namespace BibReader.Publications
                 return 1;
 
             if (s.Length > 1)
-                return int.Parse(s[1]) - int.Parse(s[0]) + 1;
-
+            {
+                Regex r = new Regex(@"\d+");
+                int count = int.Parse(r.Match(s[1]).Value) - int.Parse(r.Match(s[0]).Value) + 1;
+                return count;
+            }
             return 0;
         }
 
         public void CopyTags(LibItem item)
         {
             Authors = item.Authors;
+            AuthorsList = item.AuthorsList;
             Doi = item.Doi;
             Year = item.Year;
             Title = item.Title;
@@ -203,8 +211,18 @@ namespace BibReader.Publications
             return new Regex(" and ").Matches(Authors).Count + 1;
         }
 
+        public void FormAuthorsList()
+        {
+            AuthorsList.Clear();
+            
+            var authors = Authors.Split(new string[] { " and " }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string author in authors)
+                AuthorsList.Add(new Author(author));
+        }
+
         public void FormGeography()
         {
+            Geography.Clear();
             if (Affiliation != string.Empty)
             {
                 List<string> affs = new List<string>();
@@ -218,7 +236,7 @@ namespace BibReader.Publications
                 else
                     affs = Affiliation.Split(';').ToList();
 
-                Dictionary<string, int> curAffs = new Dictionary<string, int>();
+                List<string> curAffs = new List<string>();
 
                 foreach (var aff in affs)
                 {
@@ -226,7 +244,7 @@ namespace BibReader.Publications
 
                     infoArray[infoArray.Length - 1] = infoArray.Last().Trim();
 
-                    if (infoArray.Last().Contains("USA") || infoArray.Last() == "United States")
+                    if (infoArray.Last().Contains("USA") || infoArray.Last().Contains("United States"))
                         infoArray[infoArray.Length - 1] = "USA";
 
                     if (infoArray.Last() == "Russian Federation")
@@ -244,13 +262,16 @@ namespace BibReader.Publications
                         || infoArray.Last() == "Northern Ireland")
                         infoArray[infoArray.Length - 1] = "United Kingdom";
 
+                    if (int.TryParse(infoArray.Last(), out int a))
+                        infoArray[infoArray.Length - 1] = infoArray[infoArray.Length - 2].Trim();
+
                     infoArray[infoArray.Length - 1] = infoArray[infoArray.Length - 1].Replace(".", "");
 
-                    if (!curAffs.ContainsKey(infoArray.Last()))
-                        curAffs.Add(infoArray.Last(), 1);
+                    if (!curAffs.Contains(infoArray.Last()))
+                        curAffs.Add(infoArray.Last());
                 }
 
-                foreach (var key in curAffs.Keys)
+                foreach (var key in curAffs)
                 {
                     Geography.Add(key);
                 }

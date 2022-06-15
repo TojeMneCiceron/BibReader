@@ -13,6 +13,7 @@ namespace BibReader.BibReference.TypesOfSourse
     {
         string City;
         string ConferenceName;
+        string ConferenceNameAbbreviated;
         string[] Authors;
         string Title;
         string Publisher;
@@ -73,7 +74,8 @@ namespace BibReader.BibReference.TypesOfSourse
             City = libItem.Address;
             Number = number;
             Volume = volume;
-            ConferenceName = libItem.JournalAbbreviation;
+            ConferenceName = libItem.Journal;
+            ConferenceNameAbbreviated = libItem.JournalAbbreviation;
             Doi = libItem.Doi;
             Source = libItem.Source;
         }
@@ -109,7 +111,7 @@ namespace BibReader.BibReference.TypesOfSourse
             rtb.Select(rtb.TextLength, 0);
             rtb.SelectedText = AuthorsParser.MakeAuthorsForHarvard(Authors);
             rtb.SelectedText = Space;
-            rtb.SelectedText = Lparenthesis + Year + Rparenthesis + PointSpace;
+            rtb.SelectedText = Lparenthesis + Year + Rparenthesis + Space;
             rtb.SelectedText = Title + PointSpace;
             rtb.SelectedText = IN + DoublePointSpace;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = f;
@@ -140,7 +142,7 @@ namespace BibReader.BibReference.TypesOfSourse
                     ? Volume + Lparenthesis + Number + Rparenthesis + CommaSpace
                     : (Volume != 0 && Number == 0)
                         ? rtb.SelectedText = Volume + CommaSpace
-                        : rtb.SelectedText = Number + CommaSpace;
+                        : Number != 0 ? rtb.SelectedText = Number + CommaSpace : "";
                 rtb.SelectedText = Pages + Point;
                 rtb.SelectedText = Space + DOI + Space + Doi;
                 rtb.SelectedText = "\n\n";
@@ -173,15 +175,17 @@ namespace BibReader.BibReference.TypesOfSourse
         {
             rtb.Select(rtb.TextLength, 0);
             rtb.SelectedText = AuthorsParser.MakeAuthorsForIEEE(Authors) + CommaSpace;
-            rtb.SelectedText = "“" + Title + "”" + CommaSpace + In;
+            rtb.SelectedText = "“" + Title + ",”" + In;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = f;
-            rtb.SelectedText = ConferenceName + CommaSpace;
+            rtb.SelectedText = ConferenceNameAbbreviated + CommaSpace;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = SystemFonts.DefaultFont;
-            if (City != string.Empty)
-                rtb.SelectedText = City + CommaSpace;
+            //if (City != string.Empty)
+            //    rtb.SelectedText = City + CommaSpace;
             rtb.SelectedText = Year + CommaSpace;
-            rtb.SelectedText = Vol + Volume + CommaSpace;
-            rtb.SelectedText = Num + Number + CommaSpace;
+            if (Volume != 0)
+                rtb.SelectedText = Vol + Volume + CommaSpace;
+            if (Number != 0)
+                rtb.SelectedText = Num + Number + CommaSpace;
             rtb.SelectedText = Int32.TryParse(Pages, out int a) ? Page : PPage;
             rtb.SelectedText = Pages + Point + "\n\n";
         }

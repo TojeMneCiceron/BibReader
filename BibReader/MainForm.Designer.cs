@@ -48,6 +48,9 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tpData = new System.Windows.Forms.TabPage();
@@ -195,6 +198,7 @@
             this.tbFind = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tt = new System.Windows.Forms.ToolTip(this.components);
+            this.chAuthorsCount = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpData.SuspendLayout();
@@ -220,6 +224,7 @@
             this.statusStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chAuthorsCount)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -1555,6 +1560,7 @@
             // 
             // tpAuthorsCount
             // 
+            this.tpAuthorsCount.Controls.Add(this.chAuthorsCount);
             this.tpAuthorsCount.Controls.Add(this.lvAuthorsCountStatistic);
             this.tpAuthorsCount.Location = new System.Drawing.Point(4, 22);
             this.tpAuthorsCount.Name = "tpAuthorsCount";
@@ -2034,6 +2040,28 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Найдено";
             // 
+            // chAuthorsCount
+            // 
+            this.chAuthorsCount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chAuthorsCount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            chartArea7.Name = "ChartArea1";
+            this.chAuthorsCount.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.chAuthorsCount.Legends.Add(legend7);
+            this.chAuthorsCount.Location = new System.Drawing.Point(5, 5);
+            this.chAuthorsCount.Name = "chAuthorsCount";
+            this.chAuthorsCount.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            series7.ChartArea = "ChartArea1";
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.chAuthorsCount.Series.Add(series7);
+            this.chAuthorsCount.Size = new System.Drawing.Size(465, 400);
+            this.chAuthorsCount.TabIndex = 10;
+            this.chAuthorsCount.Text = "Количество авторов";
+            this.chAuthorsCount.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2089,6 +2117,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chAuthorsCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2242,6 +2271,7 @@
         private System.Windows.Forms.ToolStripMenuItem выбратьФильтрыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сброситьФильтрыToolStripMenuItem;
         private System.Windows.Forms.ToolTip tt;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chAuthorsCount;
     }
 }
 
