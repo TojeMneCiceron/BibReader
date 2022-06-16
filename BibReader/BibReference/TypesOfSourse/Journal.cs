@@ -122,7 +122,7 @@ namespace BibReader.BibReference.TypesOfSourse
             rtb.SelectedText = AuthorsParser.MakeAuthorsForHarvard(Authors);
             rtb.SelectedText = Space;
             rtb.SelectedText = Lparenthesis + Year + Rparenthesis + Space;
-            rtb.SelectedText = Title + PointSpace;
+            rtb.SelectedText = "‘" + Title + "’" + CommaSpace;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = f;
             rtb.SelectedText = JournalName + CommaSpace;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = SystemFonts.DefaultFont;

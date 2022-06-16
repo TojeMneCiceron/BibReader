@@ -118,8 +118,8 @@ namespace BibReader.BibReference.TypesOfSourse
             rtb.SelectedText = AuthorsParser.MakeAuthorsForHarvard(Authors);
             rtb.SelectedText = Space;
             rtb.SelectedText = Lparenthesis + Year + Rparenthesis + Space;
-            rtb.SelectedText = Title + PointSpace;
-            rtb.SelectedText = IN + DoublePointSpace;
+            rtb.SelectedText = "‘" + Title + "’" + CommaSpace;
+            //rtb.SelectedText = IN + DoublePointSpace;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = f;
             rtb.SelectedText = ConferenceName + PointSpace;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = SystemFonts.DefaultFont;
