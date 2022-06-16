@@ -157,7 +157,7 @@ namespace BibReader.Readers
 
         private string RemoveExtraSymbols(string str)
         {
-            Regex r = new Regex(@"{\w}");
+            Regex r = new Regex(@"{[a-z]}");
             Regex rs = new Regex(@"\s+");
             //remove extra spaces and \
             string res = rs.Replace(str, " ").Replace("{\"}", "\"").Replace("{''}", "\"").Replace("``", "\"").Replace(@"\", "").Replace("<i>", "").Replace("</i>", "").Replace("{[}", "[").Replace("]", "]");
@@ -166,7 +166,7 @@ namespace BibReader.Readers
 
             foreach (Match match in matches)
             {
-                var sym = Regex.Match(match.Value, @"\w");
+                var sym = Regex.Match(match.Value, @"[a-z]");
                 res = res.Replace(match.Value, sym.Value);
             }
 
@@ -287,10 +287,6 @@ namespace BibReader.Readers
                             sourceIdentifier.InitString = newLine;
                             //titleTagPosition = 0;
 
-                            if (newLine.Contains("PRUDHOMME2022226"))
-                            {
-                                int a = 1;
-                            }
                             isFirstTag = true;
                             firstTag = "";
                             fullBibTexString = "";
@@ -301,11 +297,6 @@ namespace BibReader.Readers
                         }
 
                         //string nextLine = reader.ReadLine();
-
-                        if (newLine.Contains("3."))
-                        {
-                            int a = 1;
-                        }
 
                         if (IsEndOfTag(newLine) || IsEvenBracketCount(tagString))
                         {

@@ -126,12 +126,20 @@ namespace BibReader.BibReference.TypesOfSourse
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = f;
             rtb.SelectedText = JournalName + CommaSpace;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = SystemFonts.DefaultFont;
-            rtb.SelectedText = 
-                (Volume != 0 && Number != 0)
-                ? Volume + Lparenthesis + Number + Rparenthesis + CommaSpace
-                : (Volume != 0 && Number == 0)
-                    ? rtb.SelectedText = Volume + CommaSpace
-                    : Number != 0 ? rtb.SelectedText = Number + CommaSpace : "";
+            //rtb.SelectedText = 
+            //    (Volume != 0 && Number != 0)
+            //    ? Volume + Lparenthesis + Number + Rparenthesis + CommaSpace
+            //    : (Volume != 0 && Number == 0)
+            //        ? rtb.SelectedText = Volume + CommaSpace
+            //        : Number != 0 ? rtb.SelectedText = Number + CommaSpace : "";
+
+            if (Volume != 0 && Number != 0)
+                rtb.SelectedText = Volume + Lparenthesis + Number + Rparenthesis + CommaSpace;
+            else if (Volume != 0 && Number == 0)
+                rtb.SelectedText = Volume + CommaSpace;
+            else if (Number != 0)
+                rtb.SelectedText = Number + CommaSpace;
+
             rtb.SelectedText = Int32.TryParse(Pages, out int a) ? Page : PPage;
             rtb.SelectedText = Pages + Point;
             if (Link != "")
@@ -149,12 +157,19 @@ namespace BibReader.BibReference.TypesOfSourse
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = f;
             rtb.SelectedText = JournalName + CommaSpace;
             rtb.Select(rtb.TextLength, 0); rtb.SelectionFont = SystemFonts.DefaultFont;
-            rtb.SelectedText =
-                (Volume != 0 && Number != 0)
-                ? Volume + Lparenthesis + Number + Rparenthesis + CommaSpace
-                : (Volume != 0 && Number == 0)
-                    ? rtb.SelectedText = Volume + CommaSpace
-                    : Number != 0 ? rtb.SelectedText = Number + CommaSpace : "";
+            //rtb.SelectedText =
+            //    (Volume != 0 && Number != 0)
+            //    ? Volume + Lparenthesis + Number + Rparenthesis + CommaSpace
+            //    : (Volume != 0 && Number == 0)
+            //        ? rtb.SelectedText = Volume + CommaSpace
+            //        : Number != 0 ? rtb.SelectedText = Number + CommaSpace : "";
+            if (Volume != 0 && Number != 0)
+                rtb.SelectedText = Volume + Lparenthesis + Number + Rparenthesis + CommaSpace;
+            else if (Volume != 0 && Number == 0)
+                rtb.SelectedText = Volume + CommaSpace;
+            else if (Number != 0)
+                rtb.SelectedText = Number + CommaSpace;
+
             rtb.SelectedText = Pages + Point;
             //if (Link != "")
             //    rtb.SelectedText = Space + Retrieved + Date.ToString("dd MMMM yyyy") + CommaSpace + From + Link;

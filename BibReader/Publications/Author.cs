@@ -13,6 +13,9 @@ namespace BibReader.Publications
 
         public Author(string author)
         {
+            author = author.Trim();
+            bool toInitials = true;
+
             if (!author.Contains(" "))
             {
                 LastName = author;
@@ -27,11 +30,25 @@ namespace BibReader.Publications
             else
             {
                 var indexOfStartLastName = author.LastIndexOf(' ');
-                FirstName = author.Substring(0, indexOfStartLastName);
-                LastName = author.Substring(indexOfStartLastName + 1);
+                string s1 = author.Substring(0, indexOfStartLastName);
+                string s2 = author.Substring(indexOfStartLastName + 1);
+                //elibrary
+                if (s2.Contains("."))
+                {
+                    LastName = s1;
+                    FirstName = s2;
+                    toInitials = false;
+                }
+                else
+                {
+                    //var indexOfStartLastName = author.LastIndexOf(' ');
+                    FirstName = s1;
+                    LastName = s2;
+                }
             }
 
-            ToInitials();
+            if (toInitials)
+                ToInitials();
         }
 
         private void ToInitials()
