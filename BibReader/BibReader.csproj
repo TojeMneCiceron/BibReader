@@ -229,6 +229,7 @@
     <Compile Include="Finder\Collection\Collection.cs" />
     <Compile Include="Finder\Functions.cs" />
     <Compile Include="Log\Log.cs" />
+    <Compile Include="Publications\Author.cs" />
     <Compile Include="Publications\Filters\Filter.cs" />
     <Compile Include="FiltersForm.cs">
       <SubType>Form</SubType>

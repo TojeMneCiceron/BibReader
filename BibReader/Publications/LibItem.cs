@@ -12,7 +12,7 @@ namespace BibReader.Publications
     public class LibItem
     {
         public string Authors { get; set; }
-        List<Author> AuthorsList { get; set; } = new List<Author>();
+        public List<Author> AuthorsList { get; set; } = new List<Author>();
         public string Doi {get; set; }
         public string Year {get; set; }
         public string Title { get; set; }
@@ -208,7 +208,8 @@ namespace BibReader.Publications
             if (Authors == "")
                 return 0;
 
-            return new Regex(" and ").Matches(Authors).Count + 1;
+            return AuthorsList.Count;
+            //return new Regex(" and ").Matches(Authors).Count + 1;
         }
 
         public void FormAuthorsList()

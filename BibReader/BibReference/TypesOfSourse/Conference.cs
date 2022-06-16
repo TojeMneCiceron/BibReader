@@ -14,7 +14,7 @@ namespace BibReader.BibReference.TypesOfSourse
         string City;
         string ConferenceName;
         string ConferenceNameAbbreviated;
-        string[] Authors;
+        List<Author> Authors;
         string Title;
         string Publisher;
         int Volume = 0;
@@ -31,6 +31,7 @@ namespace BibReader.BibReference.TypesOfSourse
         const string DoublePointSpace = ": ";
         const string DoublePoint = ":";
         const string Page = "p. ";
+        const string PageGOST = "P. ";
         const string PPage = "pp. ";
         const string CommaSpace = ", ";
         const string Comma = ",";
@@ -48,7 +49,7 @@ namespace BibReader.BibReference.TypesOfSourse
 
         public Conference(string[] authors, string title, string publisher, string pages, int year, string city, string conferenceName, int number, int volume, string doi, string source)
         {
-            Authors = authors.ToArray();
+            //Authors = authors.ToArray();
             Title = title;
             Publisher = publisher;
             Pages = source == "Springer Link" ? "XXX-XXX" : pages;
@@ -66,7 +67,9 @@ namespace BibReader.BibReference.TypesOfSourse
             Int32.TryParse(libItem.Year, out int year);
             Int32.TryParse(libItem.Number, out int number);
             Int32.TryParse(libItem.Volume, out int volume);
-            Authors = AuthorsParser.ParseAuthors(libItem.Authors, libItem.Source);
+            //Authors = AuthorsParser.ParseAuthors(libItem.Authors, libItem.Source);
+            Authors = libItem.AuthorsList;
+
             Title = libItem.Title;
             Publisher = libItem.Publisher;
             Pages = libItem.Source == "Springer Link" ? "XXX-XXX" : libItem.Pages;
@@ -83,7 +86,7 @@ namespace BibReader.BibReference.TypesOfSourse
         public void MakeGOST(RichTextBox rtb)
         {
             var result = string.Empty;
-            if (Authors.Length < 4)
+            if (Authors.Count < 4)
             {
                 result += AuthorsParser.MakeAuthorsForGOST(Authors);
                 result += Space;
@@ -101,7 +104,8 @@ namespace BibReader.BibReference.TypesOfSourse
                 result += City + DoublePointSpace;
             result += Publisher + CommaSpace;
             result += Year + PointSpace;
-            result += Int32.TryParse(Pages, out int a) ? Page : PPage;
+            //result += Int32.TryParse(Pages, out int a) ? Page : PPage;
+            result += PageGOST;
             result += Pages + Point;
             rtb.Text += result + "\n\n";
         }

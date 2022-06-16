@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BibReader.Publications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace BibReader.BibReference
 {
-    public enum Sourse
-    {
-        Scopus,
-        ScienceDirect,
-        IEEE,
-        WebOfScience,
-        ACMDL
-    }
+    //public enum Sourse
+    //{
+    //    Scopus,
+    //    ScienceDirect,
+    //    IEEE,
+    //    WebOfScience,
+    //    ACMDL
+    //}
 
     class AuthorsParser
     {
@@ -93,146 +94,217 @@ namespace BibReader.BibReference
             }
         }
 
-        public static string MakeAuthorsForAPA(string[] authors)
+        public static string MakeAuthorsForAPA(List<Author> authors)
         {
-            return 
-                string.Join(
-                    "",
-                    authors
-                    .Select(
-                        author => string.Join(
-                            " ",
-                            author.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)
-                            .Select(
-                                (part, index) => 
-                                part = index == 0 
-                                ? part + "," 
-                                : part[0] + "."
-                            )
-                        )
-                    )
-                    .Select(
-                        (author, i) => 
-                        authors.Count() < 8
-                        ?
-                        author +=
-                            i != authors.Length - 1 && i != authors.Length - 2
-                            ? ", "
-                            : i != authors.Length - 1 ? ", & " : ""
-                        :
-                        author =
-                            i <= 6
-                            ? i < 6 
-                            ? author + ", " 
-                            : author + " ... "
-                            : i == authors.Length - 1 ? author : ""
-                    )
-                );
+            if (authors.Count == 0)
+                return "";
+
+            if (authors.Count == 1)
+                return authors[0].FirstNameLast();
+            else if (authors.Count > 20)
+            {
+                //return authors.Where((x, i) => i < 20).Select(x => x.FirstNameLast() + ", ").Aggregate((x, y) => $"{x}{y}") + $"... {authors.Last().FirstNameLast()}";
+
+                return authors.Select((x, i) => i < 20 ? $"{x.FirstNameLast()}, " : i == authors.Count - 1 ? $"... {x.FirstNameLast()}" : "").Aggregate((x, y) => $"{x}{y}");
+            }   
+            else
+            {
+                return authors.Select((x, i) => i < authors.Count - 1 ? $"{x.FirstNameLast()}, " : $"& {x.FirstNameLast()}").Aggregate((x, y) => $"{x}{y}");
+            }
+            //return 
+            //    string.Join(
+            //        "",
+            //        authors
+            //        .Select(
+            //            author => string.Join(
+            //                " ",
+            //                author.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)
+            //                .Select(
+            //                    (part, index) => 
+            //                    part = index == 0 
+            //                    ? part + "," 
+            //                    : part[0] + "."
+            //                )
+            //            )
+            //        )
+            //        .Select(
+            //            (author, i) => 
+            //            authors.Count() < 8
+            //            ?
+            //            author +=
+            //                i != authors.Length - 1 && i != authors.Length - 2
+            //                ? ", "
+            //                : i != authors.Length - 1 ? ", & " : ""
+            //            :
+            //            author =
+            //                i <= 6
+            //                ? i < 6 
+            //                ? author + ", " 
+            //                : author + " ... "
+            //                : i == authors.Length - 1 ? author : ""
+            //        )
+            //    );
         }
 
-        public static string MakeAuthorsForHarvard(string[] authors)
+        public static string MakeAuthorsForHarvard(List<Author> authors)
         {
-            return 
-                string.Join(
-                    "",
-                    authors
-                    .Select(author => 
-                        string.Join(
-                            " ",
-                            author.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)
-                            .Select(
-                                (part, index) => 
-                                part = index == 0 
-                                ? part + "," 
-                                : part[0] + "."
-                            )
-                        )
-                    )
-                    .Select(
-                        (author, i) => 
-                        author += i != authors.Length - 1 && i != authors.Length - 2
-                        ? ", "
-                        : i != authors.Length - 1 ? " and " : ""
-                    )
-                );
+            if (authors.Count == 0)
+                return "";
+
+            if (authors.Count > 3)
+            {
+                return authors[0].FirstNameLast() + " et. al.";
+            }
+            else
+            {
+                switch (authors.Count)
+                {
+                    case 1:
+                        return authors[0].FirstNameLast();
+
+                    case 2:
+                        return $"{authors[0].FirstNameLast()} and {authors[1].FirstNameLast()}";
+
+                    case 3:
+                        return $"{authors[0].FirstNameLast()}, {authors[1].FirstNameLast()} and {authors[2].FirstNameLast()}";
+
+                    default:
+                        return "";
+                }
+            }             
+            //return 
+            //    string.Join(
+            //        "",
+            //        authors
+            //        .Select(author => 
+            //            string.Join(
+            //                " ",
+            //                author.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)
+            //                .Select(
+            //                    (part, index) => 
+            //                    part = index == 0 
+            //                    ? part + "," 
+            //                    : part[0] + "."
+            //                )
+            //            )
+            //        )
+            //        .Select(
+            //            (author, i) => 
+            //            author += i != authors.Length - 1 && i != authors.Length - 2
+            //            ? ", "
+            //            : i != authors.Length - 1 ? " and " : ""
+            //        )
+            //    );
         }
 
-        public static string MakeAuthorsForIEEE(string[] authors)
+        public static string MakeAuthorsForIEEE(List<Author> authors)
         {
-            return 
-                string.Join(
-                    "",
-                    authors
-                    .Select(
-                        author => 
-                        author.IndexOf(" ") != -1 
-                        ? string.Join(
-                            " ",
-                            author
-                            .Substring(author.IndexOf(" ") + 1)
-                            .Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)
-                            .Select(init => init[0] + ".")
-                        )
-                        + " " + author.Substring(0, author.IndexOf(" "))
-                        : author
-                    )   
-                    .Select(
-                        (author, i) => author +=
-                        i != authors.Length - 1 && i != authors.Length - 2
-                        ? ", "
-                        : i != authors.Length - 1 
-                            ? (i==0 ? " and " : ", and ") 
-                            : ""
-                    )
-                );
+            if (authors.Count == 0)
+                return "";
+
+            if (authors.Count > 6)
+            {
+                return authors[0].FirstNameFirst() + " et al.";
+            }
+            else
+            {
+                switch (authors.Count)
+                {
+                    case 1:
+                        return authors[0].FirstNameFirst();
+                    case 2:
+                        return $"{authors[0].FirstNameFirst()} and {authors[1].FirstNameFirst()}";
+                    default:
+                        return authors.Select((x, i) => i < authors.Count - 1 ? $"{x.FirstNameFirst()}," : $"and {x.FirstNameFirst()}").Aggregate((x, y) => $"{x} {y}");
+                }
+            }    
+            
+            //return 
+            //    string.Join(
+            //        "",
+            //        authors
+            //        .Select(
+            //            author => 
+            //            author.IndexOf(" ") != -1 
+            //            ? string.Join(
+            //                " ",
+            //                author
+            //                .Substring(author.IndexOf(" ") + 1)
+            //                .Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)
+            //                .Select(init => init[0] + ".")
+            //            )
+            //            + " " + author.Substring(0, author.IndexOf(" "))
+            //            : author
+            //        )   
+            //        .Select(
+            //            (author, i) => author +=
+            //            i != authors.Length - 1 && i != authors.Length - 2
+            //            ? ", "
+            //            : i != authors.Length - 1 
+            //                ? (i==0 ? " and " : ", and ") 
+            //                : ""
+            //        )
+            //    );
         }
 
-        public static string MakeAuthorsForGOST(string[] authors)
+        public static string MakeAuthorsForGOST(List<Author> authors)
         {
-            return
-                authors.Length < 4
-                ?
-                string.Join(
-                    ", ",
-                    authors.Select(author =>
-                        string.Join(
-                            " ",
-                            author
-                            .Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)
-                            .Select((part, index) => part = index == 0 ? part : part[0] + ".")
-                        )
-                    )
-                )
-                :
-                string.Join(
-                    "",
-                    authors
-                    .Select(
-                        author =>
-                        author.IndexOf(" ") != -1
-                        ? string.Join(
-                            " ",
-                            author
-                            .Substring(author.IndexOf(" ") + 1)
-                            .Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)
-                            .Select(init => init[0] + ".")
-                        )
-                        + " " + author.Substring(0, author.IndexOf(" "))
-                        : author
-                    )
-                    .Select(
-                        (author, i) =>
-                        author =
-                            i < 1
-                            //i < 3
-                            ?
-                                i == 0
-                                //i == 2
-                                ? author + " [et. al.]"
-                                : author + ", "
-                            : string.Empty
-                    )
-                );
+            if (authors.Count == 0)
+                return "";
+
+            if (authors.Count > 3)
+            {
+                return $"{authors[0].FirstNameFirst()} [et. al.]";
+            }
+            else
+            {
+                return authors.Select(x => x.FirstNameLast()).Aggregate((x, y) => $"{x}, {y}");
+            }
+
+            //return
+            //    authors.Length < 4
+            //    ?
+            //    string.Join(
+            //        ", ",
+            //        authors.Select(author =>
+            //            string.Join(
+            //                " ",
+            //                author
+            //                .Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)
+            //                .Select((part, index) => part = index == 0 ? part : part[0] + ".")
+            //            )
+            //        )
+            //    )
+            //    :
+            //    string.Join(
+            //        "",
+            //        authors
+            //        .Select(
+            //            author =>
+            //            author.IndexOf(" ") != -1
+            //            ? string.Join(
+            //                " ",
+            //                author
+            //                .Substring(author.IndexOf(" ") + 1)
+            //                .Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)
+            //                .Select(init => init[0] + ".")
+            //            )
+            //            + " " + author.Substring(0, author.IndexOf(" "))
+            //            : author
+            //        )
+            //        .Select(
+            //            (author, i) =>
+            //            author =
+            //                i < 1
+            //                //i < 3
+            //                ?
+            //                    i == 0
+            //                    //i == 2
+            //                    ? author + " [et. al.]"
+            //                    : author + ", "
+            //                : string.Empty
+            //        )
+            //    );
         }
     }
 }

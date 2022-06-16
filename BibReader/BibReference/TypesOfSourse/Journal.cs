@@ -12,7 +12,7 @@ namespace BibReader.BibReference.TypesOfSourse
     public class Journal
     {
         string Title;
-        string[] Authors;
+        List<Author> Authors;
         string JournalName;
         string JournalNameAbbreviated;
         string Pages;
@@ -27,6 +27,7 @@ namespace BibReader.BibReference.TypesOfSourse
         Font f = new Font(SystemFonts.DefaultFont, FontStyle.Italic);
         const string Point = ".";
         const string Page = "p. ";
+        const string PageGOST = "P. ";
         const string PPage = "pp. ";
         const string CommaSpace = ", ";
         const string Space = " ";
@@ -50,7 +51,7 @@ namespace BibReader.BibReference.TypesOfSourse
 
         public Journal(string[] authors, string title, string journalName, string pages, int year, int number, int vol, string link, DateTime date, string source, string doi)
         {
-            Authors = authors.ToArray();
+            //Authors = authors.ToArray();
             Title = title;
             JournalName = journalName;
             Year = year;
@@ -69,7 +70,9 @@ namespace BibReader.BibReference.TypesOfSourse
             Int32.TryParse(libItem.Number, out int number);
             Int32.TryParse(libItem.Year, out int year);
 
-            Authors = AuthorsParser.ParseAuthors(libItem.Authors, libItem.Source);
+            //Authors = AuthorsParser.ParseAuthors(libItem.Authors, libItem.Source);
+            Authors = libItem.AuthorsList;
+
             Title = libItem.Title;
             JournalName = libItem.Journal;
             JournalNameAbbreviated = libItem.JournalAbbreviation;
@@ -85,7 +88,7 @@ namespace BibReader.BibReference.TypesOfSourse
         public void MakeGOST(RichTextBox rtb)
         {
             string result = string.Empty;
-            if (Authors.Length < 4)
+            if (Authors.Count < 4)
             {
                 result += AuthorsParser.MakeAuthorsForGOST(Authors);
                 result += Space;
@@ -104,7 +107,7 @@ namespace BibReader.BibReference.TypesOfSourse
                 result += Vol + Volume + CommaSpace;
             if (Number != 0)
                 result += Num + Number + PointSpace;
-            result += PPage + Pages + Point;
+            result += PageGOST + Pages + Point;
             if (Link != string.Empty)
                 result += Space + URL + Link + Space + Lparenthesis + Avaliable + Date.ToString("dd.MM.yyyy") + Rparenthesis + Point;
             rtb.Text += result + "\n\n";
