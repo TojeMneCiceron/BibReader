@@ -217,7 +217,7 @@ namespace BibReader
             log.Write("____________________");
 
             pbLoadUniqueData.Value = 100;
-            MessageBox.Show("Готово!");
+            MessageBox.Show("Готово!", "Корпус уникальных документов");
             pbLoadUniqueData.Value = 0;
         }
 
@@ -240,7 +240,7 @@ namespace BibReader
             log.Write("____________________");
 
             pbLoadUniqueData.Value = 100;
-            MessageBox.Show("Готово!");
+            MessageBox.Show("Готово!", "Корпус релевантных документов");
             pbLoadUniqueData.Value = 0;
         }
 
@@ -378,8 +378,13 @@ namespace BibReader
 
         private void MakeBibRef()
         {
+            //double sum = 0;
+            //int i = 0;
             foreach (ListViewItem item in lvLibItems.Items)
             {
+                //i++;
+                //var time = DateTime.Now;
+
                 var libItem = (LibItem)item.Tag;
                 switch (((LibItem)item.Tag).Type)
                 {
@@ -421,7 +426,12 @@ namespace BibReader
                             journal.MakeGOST(rtbBib);
                         break;
                 }
+
+                //var _time = (DateTime.Now - time);
+                //sum += _time.TotalSeconds;
+                //log.Write($"{i}\t{_time}");
             }
+            //log.Write($"sum\t{sum}");
         }
 
         private void btFirst_Click(object sender, EventArgs e)
@@ -1389,6 +1399,9 @@ namespace BibReader
                 //log.Write($"> Make bib ref for libItems count = {lvLibItems.Items.Count} ");
                 //log.Write($"> Style: {cbBibStyles.Text} ");                
                 MakeBibRef();
+                //MessageBox.Show((DateTime.Now - time).TotalSeconds.ToString() 
+                //    + $"\n{libItems.Count}"
+                //    + $"\n{(DateTime.Now - time).TotalSeconds / libItems.Count}", "overall");
                 log.Write($"{cbBibStyles.Text}\t{lvLibItems.Items.Count}\t{ (DateTime.Now - time).TotalSeconds.ToString() }");
                 //log.Write("____________________");
 

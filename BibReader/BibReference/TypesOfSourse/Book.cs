@@ -92,32 +92,35 @@ namespace BibReader.BibReference.TypesOfSourse
         public void MakeGOST(RichTextBox rtb)
         {
             string result = string.Empty;
+            rtb.Select(rtb.TextLength, 0);
+
             if (Authors.Count < 4)
             {
-                result += AuthorsParser.MakeAuthorsForGOST(Authors);
-                result += Space;
-                result += Title;
+                rtb.SelectedText = AuthorsParser.MakeAuthorsForGOST(Authors);
+                rtb.SelectedText = Space;
+                rtb.SelectedText = Title;
             }
             else
             {
-                result += Title;
-                result += Space + Slash + Space;
-                result += AuthorsParser.MakeAuthorsForGOST(Authors);
+                rtb.SelectedText = Title;
+                rtb.SelectedText = Space + Slash + Space;
+                rtb.SelectedText = AuthorsParser.MakeAuthorsForGOST(Authors);
             }
-            result += Space + DoubleSlash + Space;
-            result += Name + PointSpace;
+            rtb.SelectedText = Space + DoubleSlash + Space;
+            rtb.SelectedText = Name + PointSpace;
             // TODO 
             if (City != string.Empty)
-                result += City + DoublePointSpace;
-            result += Publisher + CommaSpace;
-            result += Year + PointSpace;
+                rtb.SelectedText = City + DoublePointSpace;
+            rtb.SelectedText = Publisher + CommaSpace;
+            rtb.SelectedText = Year + PointSpace;
             if (Volume != 0)
-                result += Space + Vol + Volume + Point;
-            result += PageGOST + Pages + Point;
+                rtb.SelectedText = Space + Vol + Volume + Point;
+            rtb.SelectedText = PageGOST + Pages + Point;
 
             if (Link != "")
-                result += Space + URL + Link + Space + Lparenthesis + DateRus + DoublePointSpace + Date.ToString("dd.MM.yyyy") + Rparenthesis + Point;
-            rtb.Text += result + "\n\n";
+                rtb.SelectedText = Space + URL + Link + Space + Lparenthesis + DateRus + DoublePointSpace + Date.ToString("dd.MM.yyyy") + Rparenthesis + Point;
+            //rtb.Text += result + "\n\n";
+            rtb.SelectedText = "\n\n";
         }
 
         public void MakeHarvard(RichTextBox rtb)

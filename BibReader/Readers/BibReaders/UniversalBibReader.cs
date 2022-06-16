@@ -131,12 +131,13 @@ namespace BibReader.Readers
             currstr.Length >= 3 &&
             (currstr.Substring(currstr.Length - 2, 2) == "}," ||
             currstr.Substring(currstr.Length - 3, 3) == "}, " ||
-            currstr.Substring(currstr.Length - 2, 2) == "\",") ||
-            currstr.Substring(currstr.Length - 3, 3) == "},}";
+            currstr.Substring(currstr.Length - 2, 2) == "\"," ||
+            currstr.Substring(currstr.Length - 3, 3) == "},}");
 
         private bool IsEndOfLibItem(string currstr) => 
             currstr.Length > 2 && currstr != "}" 
-            && currstr.Substring(currstr.Length - 2, 2) != ",}";
+            && currstr.Substring(currstr.Length - 2, 2) != ",}"
+            || currstr.Length <= 2 && !currstr.Contains("}");
 
         private bool IsEvenBracketCount(string str)
         {
@@ -286,6 +287,10 @@ namespace BibReader.Readers
                             sourceIdentifier.InitString = newLine;
                             //titleTagPosition = 0;
 
+                            if (newLine.Contains("PRUDHOMME2022226"))
+                            {
+                                int a = 1;
+                            }
                             isFirstTag = true;
                             firstTag = "";
                             fullBibTexString = "";
@@ -296,6 +301,11 @@ namespace BibReader.Readers
                         }
 
                         //string nextLine = reader.ReadLine();
+
+                        if (newLine.Contains("3."))
+                        {
+                            int a = 1;
+                        }
 
                         if (IsEndOfTag(newLine) || IsEvenBracketCount(tagString))
                         {

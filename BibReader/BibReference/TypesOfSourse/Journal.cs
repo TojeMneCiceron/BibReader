@@ -88,29 +88,32 @@ namespace BibReader.BibReference.TypesOfSourse
         public void MakeGOST(RichTextBox rtb)
         {
             string result = string.Empty;
+            rtb.Select(rtb.TextLength, 0);
+
             if (Authors.Count < 4)
             {
-                result += AuthorsParser.MakeAuthorsForGOST(Authors);
-                result += Space;
-                result += Title;
+                rtb.SelectedText = AuthorsParser.MakeAuthorsForGOST(Authors);
+                rtb.SelectedText = Space;
+                rtb.SelectedText = Title;
             }
             else
             {
-                result += Title;
-                result += Space + Slash + Space;
-                result += AuthorsParser.MakeAuthorsForGOST(Authors);
+                rtb.SelectedText = Title;
+                rtb.SelectedText = Space + Slash + Space;
+                rtb.SelectedText = AuthorsParser.MakeAuthorsForGOST(Authors);
             }
-            result += Space + DoubleSlash + Space;
-            result += JournalName + PointSpace;
-            result += Year + PointSpace;
+            rtb.SelectedText = Space + DoubleSlash + Space;
+            rtb.SelectedText = JournalName + PointSpace;
+            rtb.SelectedText = Year + PointSpace;
             if (Volume != 0)
-                result += Vol + Volume + CommaSpace;
+                rtb.SelectedText = Vol + Volume + CommaSpace;
             if (Number != 0)
-                result += Num + Number + PointSpace;
-            result += PageGOST + Pages + Point;
+                rtb.SelectedText = Num + Number + PointSpace;
+            rtb.SelectedText = PageGOST + Pages + Point;
             if (Link != string.Empty)
-                result += Space + URL + Link + Space + Lparenthesis + Avaliable + Date.ToString("dd.MM.yyyy") + Rparenthesis + Point;
-            rtb.Text += result + "\n\n";
+                rtb.SelectedText = Space + URL + Link + Space + Lparenthesis + Avaliable + Date.ToString("dd.MM.yyyy") + Rparenthesis + Point;
+            //rtb.Text += result + "\n\n";
+            rtb.SelectedText = "\n\n";
         }
 
         public void MakeHarvard(RichTextBox rtb)

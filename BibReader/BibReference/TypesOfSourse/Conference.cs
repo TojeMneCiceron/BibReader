@@ -1,6 +1,7 @@
 ﻿using BibReader.Publications;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -86,28 +87,29 @@ namespace BibReader.BibReference.TypesOfSourse
         public void MakeGOST(RichTextBox rtb)
         {
             var result = string.Empty;
+            rtb.Select(rtb.TextLength, 0);
             if (Authors.Count < 4)
-            {
-                result += AuthorsParser.MakeAuthorsForGOST(Authors);
-                result += Space;
-                result += Title;
+            {                
+                rtb.SelectedText = AuthorsParser.MakeAuthorsForGOST(Authors);
+                rtb.SelectedText = Space;
+                rtb.SelectedText = Title;
             }
             else
             {
-                result += Title;
-                result += Space + Slash + Space;
-                result += AuthorsParser.MakeAuthorsForGOST(Authors);
+                rtb.SelectedText = Title;
+                rtb.SelectedText = Space + Slash + Space;
+                rtb.SelectedText = AuthorsParser.MakeAuthorsForGOST(Authors);
             }
-            result += Space + DoubleSlash + Space;
-            result += ConferenceName + PointSpace;
+            rtb.SelectedText = Space + DoubleSlash + Space;
+            rtb.SelectedText = ConferenceName + PointSpace;
             if (City != string.Empty)
-                result += City + DoublePointSpace;
-            result += Publisher + CommaSpace;
-            result += Year + PointSpace;
-            //result += Int32.TryParse(Pages, out int a) ? Page : PPage;
-            result += PageGOST;
-            result += Pages + Point;
-            rtb.Text += result + "\n\n";
+                rtb.SelectedText = City + DoublePointSpace;
+            rtb.SelectedText = Publisher + CommaSpace;
+            rtb.SelectedText = Year + PointSpace;
+            //rtb.SelectedText = Int32.TryParse(Pages, out int a) ? Page : PPage;
+            rtb.SelectedText = PageGOST;
+            rtb.SelectedText = Pages + Point + "\n\n";
+            //rtb.Text += "\n\n";
         }
 
         public void MakeHarvard(RichTextBox rtb)
