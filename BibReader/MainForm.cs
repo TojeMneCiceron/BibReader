@@ -1395,16 +1395,9 @@ namespace BibReader
             {
                 rtbBib.Text = string.Empty;
                 var time = DateTime.Now;
-                //log.Write($"{ time.ToString() }");
-                //log.Write($"> Make bib ref for libItems count = {lvLibItems.Items.Count} ");
-                //log.Write($"> Style: {cbBibStyles.Text} ");                
                 MakeBibRef();
-                //MessageBox.Show((DateTime.Now - time).TotalSeconds.ToString() 
-                //    + $"\n{libItems.Count}"
-                //    + $"\n{(DateTime.Now - time).TotalSeconds / libItems.Count}", "overall");
                 log.Write($"{cbBibStyles.Text}\t{lvLibItems.Items.Count}\t{ (DateTime.Now - time).TotalSeconds.ToString() }");
                 //log.Write("____________________");
-
                 MessageBox.Show("Готово!", "Библ. описания");
 
                 lbCurrentStyle.Visible = true;
@@ -1417,6 +1410,12 @@ namespace BibReader
             foreach (ListViewItem item in lvLibItems.Items)
             {
                 items.Add((LibItem)item.Tag);
+            }
+
+            if (items.Count > 500)
+            {
+                MessageBox.Show("Размер корпуса документов превышает 500 публикаций\n\nУменьшите размер корпуса для получения библ. описаний с сервера", "Слишком большой корпус");
+                return;
             }
 
             var citations = BibRefClient.GetCitations(items, cbBibStyles.Text);
