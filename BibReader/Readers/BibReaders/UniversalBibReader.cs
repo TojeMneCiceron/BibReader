@@ -160,7 +160,7 @@ namespace BibReader.Readers
             Regex r = new Regex(@"{[a-z]}");
             Regex rs = new Regex(@"\s+");
             //remove extra spaces and \
-            string res = rs.Replace(str, " ").Replace("{\"}", "\"").Replace("{''}", "\"").Replace("``", "\"").Replace(@"\", "").Replace("<i>", "").Replace("</i>", "").Replace("{[}", "[").Replace("]", "]");
+            string res = rs.Replace(str, " ").Replace("{\"}", "``").Replace("{''}", "``").Replace("\"", "``").Replace(@"\", "").Replace("<i>", "").Replace("</i>", "").Replace("{[}", "[").Replace("]", "]");
 
             var matches = r.Matches(res);
 
@@ -300,12 +300,6 @@ namespace BibReader.Readers
 
                         if (IsEndOfTag(newLine) || IsEvenBracketCount(tagString))
                         {
-                            if (tagString.Contains("number"))
-                            {
-                                int a = 1;
-
-                            }
-
                             if (newLine[newLine.Length - 1] == '}')
                                 tagString += ",";
 
@@ -418,6 +412,7 @@ namespace BibReader.Readers
                 if (Tags.TagValues["source"] == "")
                     newItem = IdentifySource(newItem, defaultSources, customSources);
 
+                newItem.Affiliation.Replace("\"", "").Replace("\n", "");
 
                 //deleting caps
                 if (Caps(newItem.Abstract))
@@ -448,27 +443,27 @@ namespace BibReader.Readers
         public static string ClearValue(string value, string key)
         {
             key.ToLower();
-            if (value != "" && ( key == "author"
-                                || key == " author"  
-                                || key == "title" 
-                                || key == " title" 
-                                || key == "pages" 
-                                || key == " pages" 
-                                || key == "journal" 
+            if (value != "" && (key == "author"
+                                || key == " author"
+                                || key == "title"
+                                || key == " title"
+                                || key == "pages"
+                                || key == " pages"
+                                || key == "journal"
                                 || key == " journal"
                                 || key == "booktitle"
-                                || key == " booktitle")
-                ) {
+                                || key == " booktitle"))
+            {
                 string[] symbolsForReplace = new string[] {
-               @"{", @"}", @"\&\#38;", "�" , "®",  @"’", @"“", @"”", @"–", @" ", @"—", @"--",  @"{''}", @"\""{a}", @"\""{o}", @"{\'e}",
-                @"\`{o", @"\'{\i}", @"\""{O}", @"\'{u}", @"\'{o}", @"\""{u}", @"\~{n}", @"\^{o}", @"\&", @"\""", @"\'", @"\~", @"\^", @"\`"
-            };
+                    @"{", @"}", @"\&\#38;", "�" , "®",  @"’", @"“", @"”", @"–", @" ", @"—", @"--",  @"{''}", @"\""{a}", @"\""{o}", @"{\'e}",
+                    @"\`{o", @"\'{\i}", @"\""{O}", @"\'{u}", @"\'{o}", @"\""{u}", @"\~{n}", @"\^{o}", @"\&", @"\""", @"\'", @"\~", @"\^", @"\`"
+                };
 
                 string[] newSymbols = new string[] {
-                "", "", "", "", "",
-                @"'", @"""", @"""", @"-", @" ", @"-", @"-", @"""", @"a", @"o", @"e",
-                @"o", @"i", @"o", @"u", @"o", @"u", @"n", @"o", " ", "", "", "", "", ""
-            };
+                    "", "", "", "", "",
+                    @"'", @"""", @"""", @"-", @" ", @"-", @"-", @"""", @"a", @"o", @"e",
+                    @"o", @"i", @"o", @"u", @"o", @"u", @"n", @"o", " ", "", "", "", "", ""
+                };
 
                 for (int i = 0; i < symbolsForReplace.Length; i++)
                 {

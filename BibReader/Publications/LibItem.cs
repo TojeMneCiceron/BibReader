@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BibReader.Readers.BibReaders;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -245,26 +246,29 @@ namespace BibReader.Publications
 
                     infoArray[infoArray.Length - 1] = infoArray.Last().Trim();
 
+                    //если попался индекс (одни цифры) - берем то, что перед ним
+                    if (int.TryParse(infoArray.Last(), out int a))
+                        infoArray[infoArray.Length - 1] = infoArray[infoArray.Length - 2].Trim();
+
                     if (infoArray.Last().Contains("USA") || infoArray.Last().Contains("United States"))
                         infoArray[infoArray.Length - 1] = "USA";
 
-                    if (infoArray.Last() == "Russian Federation")
-                        infoArray[infoArray.Length - 1] = "Russia";
+                    //if (infoArray.Last() == "Russian Federation")
+                    //    infoArray[infoArray.Length - 1] = "Russia";
 
-                    if (infoArray.Last().Contains("China")
-                        || infoArray.Last() == "Hong Kong"
-                        || infoArray.Last() == "Macau")
+                    if (infoArray.Last().Contains("China"))
+                        //|| infoArray.Last() == "Hong Kong"
+                        //|| infoArray.Last() == "Macau")
                         infoArray[infoArray.Length - 1] = "China";
 
-                    if (infoArray.Last() == "Great Britain"
-                        || infoArray.Last() == "UK"
-                        || infoArray.Last() == "Wales"
-                        || infoArray.Last() == "Scotland"
-                        || infoArray.Last() == "Northern Ireland")
-                        infoArray[infoArray.Length - 1] = "United Kingdom";
+                    //if (infoArray.Last() == "Great Britain"
+                    //    || infoArray.Last() == "UK"
+                    //    || infoArray.Last() == "Wales"
+                    //    || infoArray.Last() == "Scotland"
+                    //    || infoArray.Last() == "Northern Ireland")
+                    //    infoArray[infoArray.Length - 1] = "United Kingdom";
 
-                    if (int.TryParse(infoArray.Last(), out int a))
-                        infoArray[infoArray.Length - 1] = infoArray[infoArray.Length - 2].Trim();
+                    infoArray[infoArray.Length - 1] = Countries.GetOriginalName(infoArray.Last());
 
                     infoArray[infoArray.Length - 1] = infoArray[infoArray.Length - 1].Replace(".", "");
 

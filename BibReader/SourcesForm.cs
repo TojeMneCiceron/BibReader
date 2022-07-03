@@ -17,8 +17,9 @@ namespace BibReader
     {
         XmlSerializer xs = new XmlSerializer(typeof(List<Source>));
         public List<Source> Sources { get; set; }
+        bool defaultSources;
 
-        public SourcesForm(List<Source> sources)
+        public SourcesForm(List<Source> sources, bool defaultSources)
         {
             InitializeComponent();
 
@@ -28,6 +29,9 @@ namespace BibReader
             редактироватьToolStripMenuItem.Enabled = удалитьToolStripMenuItem.Enabled = lvSources.SelectedItems.Count > 0;
             lvSources.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             lvSources.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+            this.defaultSources = defaultSources;
+            Text = defaultSources ? "Источники по умолчанию" : "Пользовательские источники";
         }
 
         private void InitializeLV(List<Source> sources)
@@ -122,7 +126,9 @@ namespace BibReader
         {
             Sources = GetSources();
 
-            TextWriter textWriter = new StreamWriter("sources.xml");
+            string filename = defaultSources ? "defaultSources.xml" : "sources.xml";
+
+            TextWriter textWriter = new StreamWriter(filename);
             xs.Serialize(textWriter, Sources);
             textWriter.Close();
 

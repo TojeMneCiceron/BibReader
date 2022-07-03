@@ -39,12 +39,14 @@ namespace BibReader.Readers.BibReaders
         {
             Regex regex = new Regex($"^{Pattern}$");
 
-            return regex.IsMatch(item.BibTexId)
+            bool res = regex.IsMatch(item.BibTexId)
                 && item.BibTexString.Contains("{{") == HasDoubleBracketsOpening
                 && item.BibTexString.Contains("}}") == HasDoubleBracketsClosing
                 && item.BibTexString.Contains("\nTitle") == TagCapital
                 && item.BibTexString.Contains("itle = ") == TagValueSpaces
                 && item.BibTexFirstTag.ToLower() == FirstTag.ToLower();
+
+            return res;
         }
 
         public string Features()

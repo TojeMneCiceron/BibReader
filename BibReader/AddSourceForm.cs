@@ -158,6 +158,11 @@ namespace BibReader
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, hp.HelpNamespace, HelpNavigator.AssociateIndex, hp.GetHelpKeyword(this));
+        }
     }
 
     public class SymbolWithRepeatition: Symbol

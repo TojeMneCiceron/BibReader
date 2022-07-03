@@ -58,7 +58,8 @@ namespace BibReader.Corpuses
                         UniqueLibItems[position].Geography = new List<string>(item.Geography);
                     }
 
-                    if (UniqueLibItems[position].Journal == item.Journal && UniqueLibItems[position].Year == item.Year)
+                    //if (UniqueLibItems[position].Journal == item.Journal && UniqueLibItems[position].Year == item.Year)
+                    if (UniqueLibItems[position].Type == item.Type)
                     {
                         if (UniqueLibItems[position].Doi == "")
                             UniqueLibItems[position].Doi = item.Doi;

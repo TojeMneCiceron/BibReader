@@ -30,27 +30,27 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend12 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend13 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend14 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tpData = new System.Windows.Forms.TabPage();
@@ -150,6 +150,7 @@
             this.chConference = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lvConferenceStat = new System.Windows.Forms.ListView();
             this.tpAuthorsCount = new System.Windows.Forms.TabPage();
+            this.chAuthorsCount = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lvAuthorsCountStatistic = new System.Windows.Forms.ListView();
             this.btSaveDiagram = new System.Windows.Forms.Button();
             this.btOpenDiagram = new System.Windows.Forms.Button();
@@ -198,7 +199,10 @@
             this.tbFind = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tt = new System.Windows.Forms.ToolTip(this.components);
-            this.chAuthorsCount = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.hp = new System.Windows.Forms.HelpProvider();
+            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btEditCountries = new System.Windows.Forms.Button();
+            this.источникиПоУмолчаниюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpData.SuspendLayout();
@@ -219,12 +223,12 @@
             this.tpConf.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chConference)).BeginInit();
             this.tpAuthorsCount.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chAuthorsCount)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chAuthorsCount)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -1265,17 +1269,17 @@
             this.chYear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.chYear.BackImageTransparentColor = System.Drawing.Color.White;
             this.chYear.BackSecondaryColor = System.Drawing.Color.White;
-            chartArea1.Name = "ChartArea1";
-            this.chYear.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chYear.Legends.Add(legend1);
+            chartArea8.Name = "ChartArea1";
+            this.chYear.ChartAreas.Add(chartArea8);
+            legend8.Name = "Legend1";
+            this.chYear.Legends.Add(legend8);
             this.chYear.Location = new System.Drawing.Point(3, 5);
             this.chYear.Name = "chYear";
             this.chYear.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chYear.Series.Add(series1);
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "Series1";
+            this.chYear.Series.Add(series8);
             this.chYear.Size = new System.Drawing.Size(466, 383);
             this.chYear.TabIndex = 1;
             this.chYear.Text = "Годы";
@@ -1316,17 +1320,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chSource.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            chartArea2.Name = "ChartArea1";
-            this.chSource.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chSource.Legends.Add(legend2);
+            chartArea9.Name = "ChartArea1";
+            this.chSource.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.chSource.Legends.Add(legend9);
             this.chSource.Location = new System.Drawing.Point(4, 5);
             this.chSource.Name = "chSource";
             this.chSource.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chSource.Series.Add(series2);
+            series9.ChartArea = "ChartArea1";
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.chSource.Series.Add(series9);
             this.chSource.Size = new System.Drawing.Size(465, 400);
             this.chSource.TabIndex = 6;
             this.chSource.Text = "Источники";
@@ -1376,17 +1380,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chTypeDocument.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            chartArea3.Name = "ChartArea1";
-            this.chTypeDocument.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chTypeDocument.Legends.Add(legend3);
+            chartArea10.Name = "ChartArea1";
+            this.chTypeDocument.ChartAreas.Add(chartArea10);
+            legend10.Name = "Legend1";
+            this.chTypeDocument.Legends.Add(legend10);
             this.chTypeDocument.Location = new System.Drawing.Point(4, 5);
             this.chTypeDocument.Name = "chTypeDocument";
             this.chTypeDocument.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chTypeDocument.Series.Add(series3);
+            series10.ChartArea = "ChartArea1";
+            series10.Legend = "Legend1";
+            series10.Name = "Series1";
+            this.chTypeDocument.Series.Add(series10);
             this.chTypeDocument.Size = new System.Drawing.Size(465, 400);
             this.chTypeDocument.TabIndex = 7;
             this.chTypeDocument.Text = "Тип документа";
@@ -1427,17 +1431,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chJournal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.chJournal.BackHatchStyle = System.Windows.Forms.DataVisualization.Charting.ChartHatchStyle.DarkDownwardDiagonal;
-            chartArea4.Name = "ChartArea1";
-            this.chJournal.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chJournal.Legends.Add(legend4);
+            chartArea11.Name = "ChartArea1";
+            this.chJournal.ChartAreas.Add(chartArea11);
+            legend11.Name = "Legend1";
+            this.chJournal.Legends.Add(legend11);
             this.chJournal.Location = new System.Drawing.Point(4, 5);
             this.chJournal.Name = "chJournal";
             this.chJournal.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chJournal.Series.Add(series4);
+            series11.ChartArea = "ChartArea1";
+            series11.Legend = "Legend1";
+            series11.Name = "Series1";
+            this.chJournal.Series.Add(series11);
             this.chJournal.Size = new System.Drawing.Size(465, 400);
             this.chJournal.TabIndex = 8;
             this.chJournal.Text = "Журналы";
@@ -1460,6 +1464,7 @@
             // 
             // tpGeography
             // 
+            this.tpGeography.Controls.Add(this.btEditCountries);
             this.tpGeography.Controls.Add(this.chGeography);
             this.tpGeography.Controls.Add(this.lvGeography);
             this.tpGeography.Location = new System.Drawing.Point(4, 22);
@@ -1477,17 +1482,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chGeography.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            chartArea5.Name = "ChartArea1";
-            this.chGeography.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.chGeography.Legends.Add(legend5);
+            chartArea12.Name = "ChartArea1";
+            this.chGeography.ChartAreas.Add(chartArea12);
+            legend12.Name = "Legend1";
+            this.chGeography.Legends.Add(legend12);
             this.chGeography.Location = new System.Drawing.Point(4, 5);
             this.chGeography.Name = "chGeography";
             this.chGeography.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.chGeography.Series.Add(series5);
+            series12.ChartArea = "ChartArea1";
+            series12.Legend = "Legend1";
+            series12.Name = "Series1";
+            this.chGeography.Series.Add(series12);
             this.chGeography.Size = new System.Drawing.Size(465, 400);
             this.chGeography.TabIndex = 9;
             this.chGeography.Text = "География";
@@ -1527,17 +1532,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chConference.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            chartArea6.Name = "ChartArea1";
-            this.chConference.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chConference.Legends.Add(legend6);
+            chartArea13.Name = "ChartArea1";
+            this.chConference.ChartAreas.Add(chartArea13);
+            legend13.Name = "Legend1";
+            this.chConference.Legends.Add(legend13);
             this.chConference.Location = new System.Drawing.Point(4, 5);
             this.chConference.Name = "chConference";
             this.chConference.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.chConference.Series.Add(series6);
+            series13.ChartArea = "ChartArea1";
+            series13.Legend = "Legend1";
+            series13.Name = "Series1";
+            this.chConference.Series.Add(series13);
             this.chConference.Size = new System.Drawing.Size(465, 400);
             this.chConference.TabIndex = 9;
             this.chConference.Text = "Конференции";
@@ -1568,6 +1573,28 @@
             this.tpAuthorsCount.TabIndex = 6;
             this.tpAuthorsCount.Text = "Количество авторов";
             this.tpAuthorsCount.UseVisualStyleBackColor = true;
+            // 
+            // chAuthorsCount
+            // 
+            this.chAuthorsCount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chAuthorsCount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            chartArea14.Name = "ChartArea1";
+            this.chAuthorsCount.ChartAreas.Add(chartArea14);
+            legend14.Name = "Legend1";
+            this.chAuthorsCount.Legends.Add(legend14);
+            this.chAuthorsCount.Location = new System.Drawing.Point(5, 5);
+            this.chAuthorsCount.Name = "chAuthorsCount";
+            this.chAuthorsCount.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            series14.ChartArea = "ChartArea1";
+            series14.Legend = "Legend1";
+            series14.Name = "Series1";
+            this.chAuthorsCount.Series.Add(series14);
+            this.chAuthorsCount.Size = new System.Drawing.Size(465, 400);
+            this.chAuthorsCount.TabIndex = 10;
+            this.chAuthorsCount.Text = "Количество авторов";
+            this.chAuthorsCount.Visible = false;
             // 
             // lvAuthorsCountStatistic
             // 
@@ -1637,7 +1664,8 @@
             this.классификацияToolStripMenuItem,
             this.фильтрыToolStripMenuItem,
             this.контекстныйАнализToolStripMenuItem,
-            this.источникиToolStripMenuItem});
+            this.источникиToolStripMenuItem,
+            this.справкаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -1837,6 +1865,7 @@
             // 
             this.источникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.списокИсточниковToolStripMenuItem,
+            this.источникиПоУмолчаниюToolStripMenuItem,
             this.обновитьИсточникиПубликацийToolStripMenuItem});
             this.источникиToolStripMenuItem.Name = "источникиToolStripMenuItem";
             this.источникиToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
@@ -1945,8 +1974,8 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(129, 17);
-            this.toolStripStatusLabel1.Text = "Last opened file name: ";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(162, 17);
+            this.toolStripStatusLabel1.Text = "Последний открытый файл:";
             // 
             // labelFindedItemsCount
             // 
@@ -2040,27 +2069,35 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Найдено";
             // 
-            // chAuthorsCount
+            // hp
             // 
-            this.chAuthorsCount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chAuthorsCount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            chartArea7.Name = "ChartArea1";
-            this.chAuthorsCount.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.chAuthorsCount.Legends.Add(legend7);
-            this.chAuthorsCount.Location = new System.Drawing.Point(5, 5);
-            this.chAuthorsCount.Name = "chAuthorsCount";
-            this.chAuthorsCount.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.chAuthorsCount.Series.Add(series7);
-            this.chAuthorsCount.Size = new System.Drawing.Size(465, 400);
-            this.chAuthorsCount.TabIndex = 10;
-            this.chAuthorsCount.Text = "Количество авторов";
-            this.chAuthorsCount.Visible = false;
+            this.hp.HelpNamespace = "help.html";
+            // 
+            // справкаToolStripMenuItem
+            // 
+            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.справкаToolStripMenuItem.Text = "Справка";
+            this.справкаToolStripMenuItem.Click += new System.EventHandler(this.справкаToolStripMenuItem_Click);
+            // 
+            // btEditCountries
+            // 
+            this.btEditCountries.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btEditCountries.BackgroundImage")));
+            this.btEditCountries.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btEditCountries.Location = new System.Drawing.Point(444, 5);
+            this.btEditCountries.Name = "btEditCountries";
+            this.btEditCountries.Size = new System.Drawing.Size(25, 21);
+            this.btEditCountries.TabIndex = 10;
+            this.tt.SetToolTip(this.btEditCountries, "Редактировать");
+            this.btEditCountries.UseVisualStyleBackColor = true;
+            this.btEditCountries.Click += new System.EventHandler(this.btEditCountries_Click);
+            // 
+            // источникиПоУмолчаниюToolStripMenuItem
+            // 
+            this.источникиПоУмолчаниюToolStripMenuItem.Name = "источникиПоУмолчаниюToolStripMenuItem";
+            this.источникиПоУмолчаниюToolStripMenuItem.Size = new System.Drawing.Size(286, 22);
+            this.источникиПоУмолчаниюToolStripMenuItem.Text = "Список источников по умолчанию";
+            this.источникиПоУмолчаниюToolStripMenuItem.Click += new System.EventHandler(this.источникиПоУмолчаниюToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -2079,10 +2116,13 @@
             this.Controls.Add(this.lvLibItems);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
+            this.hp.SetHelpKeyword(this, "Библиографические описания");
+            this.hp.SetHelpNavigator(this, System.Windows.Forms.HelpNavigator.KeywordIndex);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1027, 597);
             this.Name = "MainForm";
+            this.hp.SetShowHelp(this, true);
             this.Text = "BibReader";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mainForm_KeyDown);
             this.groupBox1.ResumeLayout(false);
@@ -2108,6 +2148,7 @@
             this.tpConf.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chConference)).EndInit();
             this.tpAuthorsCount.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chAuthorsCount)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -2117,7 +2158,6 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chAuthorsCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2272,6 +2312,10 @@
         private System.Windows.Forms.ToolStripMenuItem сброситьФильтрыToolStripMenuItem;
         private System.Windows.Forms.ToolTip tt;
         private System.Windows.Forms.DataVisualization.Charting.Chart chAuthorsCount;
+        private System.Windows.Forms.HelpProvider hp;
+        private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
+        private System.Windows.Forms.Button btEditCountries;
+        private System.Windows.Forms.ToolStripMenuItem источникиПоУмолчаниюToolStripMenuItem;
     }
 }
 

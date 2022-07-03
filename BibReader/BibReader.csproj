@@ -226,6 +226,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>BibRefClientConfig.settings</DependentUpon>
     </Compile>
+    <Compile Include="EditCountries.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditCountries.Designer.cs">
+      <DependentUpon>EditCountries.cs</DependentUpon>
+    </Compile>
     <Compile Include="Finder\Collection\Collection.cs" />
     <Compile Include="Finder\Functions.cs" />
     <Compile Include="Log\Log.cs" />
@@ -239,6 +245,7 @@
     </Compile>
     <Compile Include="Finder\Finder.cs" />
     <Compile Include="Publications\Tags.cs" />
+    <Compile Include="Readers\BibReaders\Countries.cs" />
     <Compile Include="Readers\BibReaders\Source.cs" />
     <Compile Include="Readers\BibReaders\SourceIdentifier.cs" />
     <Compile Include="Readers\BibReaders\UniversalBibReader.cs" />
@@ -297,6 +304,9 @@
     <EmbeddedResource Include="ContextAnalysis.resx">
       <DependentUpon>ContextAnalysis.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditCountries.resx">
+      <DependentUpon>EditCountries.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FiltersForm.resx">
       <DependentUpon>FiltersForm.cs</DependentUpon>

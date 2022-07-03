@@ -166,6 +166,8 @@ namespace BibReader
             cbBibStyles.SelectedIndex = 0;
 
             InitSources();
+
+            Countries.ReadCountries();
         }
         private void AddLibItemsInLvItems()
         {
@@ -324,7 +326,7 @@ namespace BibReader
                 log.Write($"{ (DateTime.Now - time).TotalSeconds.ToString() } sec.");
                 log.Write("____________________");
 
-                toolStripStatusLabel1.Text = "Last opened file name: " + lastOpenedFileName;
+                toolStripStatusLabel1.Text = "Последний открытый файл: " + lastOpenedFileName;
                 labelFindedItemsCount.Text = string.Empty;
                 btFirst.Enabled = false;
                 btUnique.Enabled = true;
@@ -367,7 +369,7 @@ namespace BibReader
                 log.Write($"{ (DateTime.Now - time).TotalSeconds.ToString() } sec.");
                 log.Write("____________________");
 
-                toolStripStatusLabel1.Text = "Last opened file name: " + lastOpenedFileName;
+                toolStripStatusLabel1.Text = "Последний открытый файл: " + lastOpenedFileName;
                 labelFindedItemsCount.Text = string.Empty;
                 btFirst.Enabled = false;
                 btUnique.Enabled = true;
@@ -1304,7 +1306,7 @@ namespace BibReader
             setReadOnlyTextBox(tbAffiliation, true);
             setVisibleButton(btSaveAffiliation, false);
             setVisibleButton(btEditAffiliation, true);
-            ((LibItem)lvLibItems.SelectedItems[0].Tag).Affiliation = tbAffiliation.Text;
+            ((LibItem)lvLibItems.SelectedItems[0].Tag).Affiliation = tbAffiliation.Text.Replace("\"", "").Replace("\n", "");
 
             //Stat.DeleteGeography(((LibItem)lvLibItems.SelectedItems[0].Tag).Geography);
 
@@ -1479,7 +1481,7 @@ namespace BibReader
 
         private void списокИсточниковToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var sourcesForm = new SourcesForm(customSources);
+            var sourcesForm = new SourcesForm(customSources, false);
 
             if (sourcesForm.ShowDialog() != DialogResult.OK)
                 return;
@@ -1590,6 +1592,31 @@ namespace BibReader
                 }
                 LastOpenedFilterTab = form.LastOpenedTab;
             }
+        }
+
+        private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, hp.HelpNamespace, HelpNavigator.AssociateIndex, hp.GetHelpKeyword(this));
+        }
+
+        private void btEditCountries_Click(object sender, EventArgs e)
+        {
+            var ec = new EditCountries(Countries.countries);
+
+            ec.ShowDialog();
+        }
+
+        private void источникиПоУмолчаниюToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var sourcesForm = new SourcesForm(defaultSources, true);
+
+            if (sourcesForm.ShowDialog() != DialogResult.OK)
+                return;
+
+            defaultSources = sourcesForm.Sources;
+
+            //обновляем?
+            UpdateSources();
         }
     }
 }
